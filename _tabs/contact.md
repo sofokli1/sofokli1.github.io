@@ -4,7 +4,8 @@ icon: fas fa-info-circle
 order: 5
 ---
 
-# Contact Juxhin Bakalli Technologies
+# Juxhin Bakalli Technologies
+NIP: 6762653442
 
 ## Let's Connect!
 
