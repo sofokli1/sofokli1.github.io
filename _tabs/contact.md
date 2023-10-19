@@ -27,6 +27,7 @@ Feel free to drop me a message, and I'll get back to you as soon as possible.
 Looking forward to connecting!
 
 Juxhin Bakalli
+
 Senior iOS Engineer
 
 ---

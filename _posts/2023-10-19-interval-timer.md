@@ -6,8 +6,13 @@ tags: [app,launch]     # TAG names should always be lowercase
 ---
 [![Interval Timer](https://public-web-resources-trustysafe.s3.amazonaws.com/images/interval_timer_%E2%96%B8_hiit_tabata-1200x628.png)](https://apps.apple.com/us/app/interval-timer-hiit-tabata/id6469007234?uo=4)
 
-## Technology that went into making this app
+## Supported platforms
+- iOS/iPadOS
+- watchOS
+- tvOS
+- macOS
 
+## Technology that went into making this app
 - TCA
 - SwiftUI
 - SPM

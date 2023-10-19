@@ -5,7 +5,7 @@ order: 4
 ---
 
 
-# About Juxhin Bakalli
+# Juxhin Bakalli
 
 ## Senior iOS Engineer | Expert in Crafting Seamless Mobile Experiences
 
@@ -42,6 +42,7 @@ Whether you're looking to collaborate on a groundbreaking project or just want t
 
 Thank you for stopping by, and I look forward to the possibility of working together!
 
-Juxhin Bakalli/
+Juxhin Bakalli
+
 Senior iOS Engineer
 
