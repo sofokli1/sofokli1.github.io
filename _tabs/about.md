@@ -30,7 +30,7 @@ Throughout my career, I've had the privilege of contributing to a diverse range 
 - [Interval Timer](https://www.getintervaltimer.com): An interval timer for soprts like HIIT, Tabata, oxing, Running, Circuit training etc. I designed and developed the whole app and the CI/CD workflow.
 - [Sendwave](https://www.sendwave.com): Money transfer for locations where banks are too expensive. I worked on the user onboarding team and helped increase engagment with an auto-redeemable referral program. Reduced support ticket by makeing improvments to the login process. 
 - [Waldo Photos](https://waldophotos.com): I was the main iOS engineer.
-- [Toggl Track](https://toggl.com/track/): Worked large part of the app and helpe port it from C# to Swift.
+- [Toggl Track](https://toggl.com/track/): Worked on large part of the app and ported it from C# to Swift.
 
 ### A Passion for Innovation
 
