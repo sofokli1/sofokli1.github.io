@@ -37,7 +37,7 @@ I'm based in Krakow Poland, but I'm available for remote work.
 
 Address:
 Zamknięta 10 lok.1.5,
-,30-554, Krakow,
+30-554, Krakow,
 Poland
 
 Phone:
