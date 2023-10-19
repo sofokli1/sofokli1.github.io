@@ -35,9 +35,9 @@ Senior iOS Engineer
 
 I'm based in Krakow Poland, but I'm available for remote work.
 
-Address:/
-Zamknięta 10 lok.1.5/
-30-554 Krakow/
+Address:
+Zamknięta 10 lok.1.5,
+,30-554, Krakow,
 Poland
 
 Phone:
