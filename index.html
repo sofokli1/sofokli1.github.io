@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juxhin Bakalli Technologies - iOS App Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Juxhin Bakalli Technologies</div>
+            <div class="nav-spacer"></div>
+            <ul class="nav-menu">
+                <li class="nav-item-with-dropdown">
+                    <a href="#apps">Apps</a>
+                    <div class="nav-dropdown">
+                        <a href="apps/interval-timer.html" class="dropdown-item">
+                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/60/bc/57/60bc573a-fde3-c34f-df84-376f4d44abb1/AppIcon-0-1x_U007epad-0-1-85-220-0.png/246x0w.png" alt="Interval Timer" class="dropdown-icon">
+                            <div class="dropdown-content">
+                                <div class="dropdown-title">Interval Timer ▸ HIIT & Tabata</div>
+                                <div class="dropdown-subtitle">Health & Fitness</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav-menu" id="mobileNavMenu">
+        <div class="nav-brand-mobile">Portfolio</div>
+        <ul>
+            <li><a href="#apps">Apps</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Innovative iOS Apps</h1>
+            <p class="hero-subtitle">Crafting exceptional mobile experiences for your everyday needs</p>
+            <a href="#apps" class="cta-button">Explore Apps</a>
+        </div>
+        <div class="hero-gradient"></div>
+    </header>
+
+    <section id="apps" class="apps-section">
+        <div class="container">
+            <h2 class="section-title">Featured Apps</h2>
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-icon-wrapper">
+                        <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/60/bc/57/60bc573a-fde3-c34f-df84-376f4d44abb1/AppIcon-0-1x_U007epad-0-1-85-220-0.png/246x0w.png" alt="Interval Timer Icon" class="app-icon">
+                    </div>
+                    <h3 class="app-name">Interval Timer ▸ HIIT & Tabata</h3>
+                    <p class="app-category">Health & Fitness</p>
+                    <div class="app-rating">
+                        <div class="stars">★★★★★</div>
+                        <span>5.0</span>
+                    </div>
+                    <p class="app-description">Elevate your workouts with the ultimate Interval Timer app, designed to boost your fitness regimen.</p>
+                    <div class="app-badges">
+                        <span class="badge">HIIT</span>
+                        <span class="badge">Tabata</span>
+                        <span class="badge">Boxing</span>
+                    </div>
+                    <div class="app-links">
+                        <a href="apps/interval-timer.html" class="btn-primary">Learn More</a>
+                        <a href="https://apps.apple.com/us/app/interval-timer-hiit-tabata/id6469007234" target="_blank" class="btn-secondary">
+                            <svg class="apple-icon" viewBox="0 0 24 24" width="16" height="16">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            App Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About the Developer</h2>
+            <div class="about-content">
+                <p>Passionate iOS developer dedicated to creating intuitive and powerful apps that enhance daily life. With a focus on clean design and seamless user experience, each app is crafted with attention to detail and performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Juxhin Bakalli Technologies</h3>
+                    <p>Creating exceptional iOS experiences</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy/interval-timer-privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms/interval-timer-terms.html">Terms of Use</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Connect</h4>
+                    <p id="contact">Contact us for support or inquiries</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Juxhin Bakalli Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

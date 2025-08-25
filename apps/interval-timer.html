@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interval Timer ▸ HIIT & Tabata - Juxhin Bakalli Technologies</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .interval-hero {
+            background-image: url('https://images.unsplash.com/photo-1517963879433-6ad2b056d712?ixlib=rb-4.0.3');
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../index.html" class="nav-brand">Juxhin Bakalli Technologies</a>
+            <div class="nav-spacer"></div>
+            <ul class="nav-menu">
+                <li class="nav-item-with-dropdown">
+                    <a href="../index.html#apps">Apps</a>
+                    <div class="nav-dropdown">
+                        <a href="../apps/interval-timer.html" class="dropdown-item">
+                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/60/bc/57/60bc573a-fde3-c34f-df84-376f4d44abb1/AppIcon-0-1x_U007epad-0-1-85-220-0.png/246x0w.png" alt="Interval Timer" class="dropdown-icon">
+                            <div class="dropdown-content">
+                                <div class="dropdown-title">Interval Timer ▸ HIIT & Tabata</div>
+                                <div class="dropdown-subtitle">Health & Fitness</div>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li><a href="../privacy/interval-timer-privacy.html">Privacy</a></li>
+                <li><a href="../terms/interval-timer-terms.html">Terms</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    
+    <!-- Mobile Navigation Menu -->
+    <nav class="mobile-nav-menu" id="mobileNavMenu">
+        <div class="nav-brand-mobile">Interval Timer</div>
+        <ul>
+            <li><a href="../index.html#apps">Apps</a></li>
+            <li><a href="../privacy/interval-timer-privacy.html">Privacy</a></li>
+            <li><a href="../terms/interval-timer-terms.html">Terms</a></li>
+        </ul>
+    </nav>
+
+    <section class="app-hero interval-hero">
+        <div class="container">
+            <div class="app-hero-content">
+                <div class="app-hero-grid">
+                    <div class="iphone-mockup">
+                        <div class="iphone-frame">
+                            <div class="iphone-screen">
+                                <div class="iphone-dynamic-island"></div>
+                                <!-- Try to load video first, fallback to slideshow -->
+                                <video class="app-video" autoplay muted loop playsinline poster="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f4/db/a0/f4dba0b9-8d0c-9296-30d5-1811a60c2521/e433c0e6-5df5-4b7a-b16e-8ce98a2a0966_test_2_TimerWork.iPhone_6_7.png/392x0w.jpg">
+                                    <source src="../assets/interval-timer-preview.mp4" type="video/mp4">
+                                    <!-- Fallback to slideshow if video doesn't exist -->
+                                </video>
+                                <div class="app-slideshow" id="appSlideshow" style="display: none;">
+                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f4/db/a0/f4dba0b9-8d0c-9296-30d5-1811a60c2521/e433c0e6-5df5-4b7a-b16e-8ce98a2a0966_test_2_TimerWork.iPhone_6_7.png/392x0w.jpg" alt="Timer Work Screen" class="slide active">
+                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/66/3d/f5/663df5e6-22f5-f1cb-016a-0bb2d07b317e/c2c6dac0-b08b-4096-8c40-1e68e991c37f_test_3_TimerRest.iPhone_6_7.png/392x0w.jpg" alt="Timer Rest Screen" class="slide">
+                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a1/a0/57/a1a057b1-7a8a-5dde-1e37-33af22c5cff2/ab2d3dfb-63fc-49c1-b3d8-7454e5bdc965_test_4_TimerRecovery.iPhone_6_7.png/392x0w.jpg" alt="Timer Recovery Screen" class="slide">
+                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/46/9b/9a/469b9a60-7e86-ddbe-31bc-ade6b2fb12b3/0b19fa78-2065-41b0-a597-e52ddd56a4a2_test_5_TimerCreatorDarkMode.iPhone_6_7.png/392x0w.jpg" alt="Timer Creator Dark Mode" class="slide">
+                                    <div class="slide-indicators">
+                                        <div class="indicator active"></div>
+                                        <div class="indicator"></div>
+                                        <div class="indicator"></div>
+                                        <div class="indicator"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-info">
+                        <h1>Interval Timer ▸ HIIT & Tabata</h1>
+                        <p class="tagline">Elevate your workouts with the ultimate Interval Timer app</p>
+                        <ul class="app-features">
+                            <li>Customizable Intervals</li>
+                            <li>Customizable Alerts</li>
+                            <li>Repeating Sets</li>
+                            <li>Countdown Timer</li>
+                            <li>Support for HIIT, Tabata, Boxing, Running</li>
+                            <li>Circuit Training & Yoga Modes</li>
+                        </ul>
+                        <div class="app-rating" style="margin-bottom: 2rem;">
+                            <div class="stars">★★★★★</div>
+                            <span style="color: white; margin-left: 0.5rem;">5.0 Rating</span>
+                        </div>
+                        <a href="https://apps.apple.com/us/app/interval-timer-hiit-tabata/id6469007234" target="_blank" class="download-button">
+                            <svg class="apple-icon" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                            </svg>
+                            Download on App Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="screenshots-section">
+        <div class="container">
+            <h2 class="section-title">Screenshots</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f4/db/a0/f4dba0b9-8d0c-9296-30d5-1811a60c2521/e433c0e6-5df5-4b7a-b16e-8ce98a2a0966_test_2_TimerWork.iPhone_6_7.png/300x0w.jpg" alt="Timer Work Screen" loading="lazy">
+                </div>
+                <div class="screenshot">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/66/3d/f5/663df5e6-22f5-f1cb-016a-0bb2d07b317e/c2c6dac0-b08b-4096-8c40-1e68e991c37f_test_3_TimerRest.iPhone_6_7.png/300x0w.jpg" alt="Timer Rest Screen" loading="lazy">
+                </div>
+                <div class="screenshot">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a1/a0/57/a1a057b1-7a8a-5dde-1e37-33af22c5cff2/ab2d3dfb-63fc-49c1-b3d8-7454e5bdc965_test_4_TimerRecovery.iPhone_6_7.png/300x0w.jpg" alt="Timer Recovery Screen" loading="lazy">
+                </div>
+                <div class="screenshot">
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/46/9b/9a/469b9a60-7e86-ddbe-31bc-ade6b2fb12b3/0b19fa78-2065-41b0-a597-e52ddd56a4a2_test_5_TimerCreatorDarkMode.iPhone_6_7.png/300x0w.jpg" alt="Timer Creator Dark Mode" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-detail">
+        <div class="container">
+            <h2 class="section-title">Why Choose Interval Timer?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏱</div>
+                    <h3>Precise Timing</h3>
+                    <p>Accurate interval tracking with customizable work and rest periods for optimal training efficiency.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Multiple Workout Types</h3>
+                    <p>Perfect for HIIT, Tabata, Boxing, Running, Circuit Training, and Yoga sessions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Custom Alerts</h3>
+                    <p>Audio and visual cues to keep you focused on your workout without watching the screen.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your workout sessions and track improvements over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💪</div>
+                    <h3>Repeating Sets</h3>
+                    <p>Easily configure multiple rounds and sets for comprehensive training sessions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Clean Interface</h3>
+                    <p>Intuitive design that's easy to use during intense workouts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">Perfect for Every Fitness Level</h2>
+            <div class="about-content">
+                <p>Whether you're a beginner starting your fitness journey or a seasoned athlete pushing your limits, Interval Timer adapts to your needs. Create custom workouts, save your favorites, and transform your training with precision timing and motivating alerts.</p>
+                <br>
+                <p><strong>Free to download</strong> with all essential features included. Start your fitness transformation today!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Interval Timer</h3>
+                    <p>Your Ultimate Workout Companion</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../privacy/interval-timer-privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms/interval-timer-terms.html">Terms of Use</a></li>
+                        <li><a href="https://apps.apple.com/us/app/interval-timer-hiit-tabata/id6469007234" target="_blank">App Store</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Categories</h4>
+                    <p>Health & Fitness</p>
+                    <p>Free</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Juxhin Bakalli Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
