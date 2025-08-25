@@ -262,13 +262,27 @@ body {
 
 .hero {
     margin-top: 60px;
-    min-height: 500px;
+    min-height: 245px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .hero-gradient {
@@ -277,20 +291,20 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
 }
 
 .hero-content {
     text-align: center;
     color: var(--white);
     z-index: 1;
-    padding: 4rem 1rem;
+    padding: 2rem 1rem;
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 2.4rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     background: linear-gradient(to right, #ffffff 0%, #f0f0f0 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -340,34 +354,34 @@ body {
 
 .app-card {
     background: var(--white);
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
 }
 
 .app-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
 }
 
 .app-icon-wrapper {
     display: flex;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .app-icon {
-    width: 120px;
-    height: 120px;
-    border-radius: 27px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .app-name {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     color: var(--dark);
 }
 
@@ -393,8 +407,9 @@ body {
 
 .app-description {
     color: var(--gray-dark);
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .app-badges {
@@ -416,10 +431,33 @@ body {
 .app-links {
     display: flex;
     gap: 1rem;
+    align-items: center;
+}
+
+.app-store-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    transition: transform 0.2s ease;
+}
+
+.app-store-badge:hover {
+    transform: scale(1.05);
+}
+
+.app-store-badge img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-height: none;
+}
+
+.app-store-badge-large {
+    height: 64px;
 }
 
 .btn-primary, .btn-secondary {
-    flex: 1;
     padding: 12px 20px;
     border-radius: 12px;
     text-decoration: none;
@@ -430,6 +468,8 @@ body {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    height: 48px;
+    box-sizing: border-box;
 }
 
 .btn-primary {
@@ -521,16 +561,17 @@ body {
 }
 
 .app-hero {
-    min-height: 600px;
+    min-height: 320px;
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     margin-top: 80px;
     padding-top: 2rem;
+    border-radius: 0 0 30px 30px;
 }
 
 .app-hero::before {
@@ -540,7 +581,20 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
+    border-radius: 0 0 30px 30px;
+}
+
+.interval-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
+    border-radius: 0 0 30px 30px;
+    z-index: 0;
 }
 
 .app-hero-content {
@@ -559,6 +613,24 @@ body {
 .app-info h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+}
+
+.app-header-with-icon {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.app-page-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.app-header-with-icon h1 {
+    margin-bottom: 0;
 }
 
 .app-info .tagline {
@@ -609,9 +681,10 @@ body {
     position: relative;
     width: 320px;
     height: 688px;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto -120px auto;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25));
     transition: all 0.3s ease;
+    z-index: 10;
 }
 
 /* Smooth transitions for responsive changes */
@@ -627,7 +700,7 @@ body {
 /* Landscape orientation optimizations */
 @media (max-width: 768px) and (orientation: landscape) {
     .app-hero {
-        min-height: 400px;
+        min-height: 220px;
         padding-top: 1rem;
     }
     
@@ -640,7 +713,7 @@ body {
     .iphone-mockup {
         width: 240px;
         height: 490px;
-        margin: 0 auto 2rem auto;
+        margin: 0 auto -120px auto;
     }
     
     .app-info {
@@ -652,6 +725,15 @@ body {
         margin-bottom: 0.75rem;
     }
     
+    .app-page-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .app-header-with-icon {
+        gap: 1rem;
+    }
+    
     .app-features {
         margin-bottom: 1rem;
     }
@@ -661,13 +743,13 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, #2c2c2e, #1c1c1e);
+    background: linear-gradient(145deg, #007AFF, #5856D6);
     border-radius: 50px;
     padding: 6px;
     box-shadow: 
         0 25px 80px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
     z-index: 1;
 }
 
@@ -845,12 +927,21 @@ body {
     .app-hero {
         margin-top: 70px;
         padding-top: 1rem;
-        min-height: 400px;
+        min-height: 220px;
     }
     
     .app-info h1 {
         font-size: 1.75rem;
         line-height: 1.3;
+    }
+    
+    .app-page-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .app-header-with-icon {
+        gap: 0.8rem;
     }
     
     .app-info .tagline {
@@ -861,7 +952,7 @@ body {
     .iphone-mockup {
         width: 220px;
         height: 473px;
-        margin: 1.5rem auto 2rem auto;
+        margin: 1.5rem auto -120px auto;
     }
     
     .iphone-dynamic-island {
@@ -963,7 +1054,7 @@ body {
     .app-hero {
         margin-top: 75px;
         padding-top: 1rem;
-        min-height: 450px;
+        min-height: 250px;
     }
     
     .app-info h1 {
@@ -973,7 +1064,7 @@ body {
     .iphone-mockup {
         width: 250px;
         height: 537px;
-        margin: 1.75rem auto 2rem auto;
+        margin: 1.75rem auto -120px auto;
     }
     
     .iphone-dynamic-island {
@@ -1003,7 +1094,7 @@ body {
     .app-hero {
         margin-top: 80px;
         padding-top: 1.5rem;
-        min-height: 550px;
+        min-height: 300px;
     }
     
     .app-hero-grid {
@@ -1023,7 +1114,7 @@ body {
     .iphone-mockup {
         width: 300px;
         height: 645px;
-        margin-bottom: 2rem;
+        margin-bottom: -120px;
     }
     
     .iphone-dynamic-island {
@@ -1068,6 +1159,14 @@ body {
         gap: 2rem;
     }
     
+    .app-info {
+        order: 1;
+    }
+    
+    .iphone-mockup {
+        order: 2;
+    }
+    
     .nav-menu {
         gap: 1rem;
         font-size: 0.9rem;
@@ -1090,7 +1189,7 @@ body {
     }
     
     .app-hero {
-        min-height: 700px;
+        min-height: 380px;
         padding-top: 3rem;
     }
     
@@ -1105,7 +1204,7 @@ body {
     .iphone-mockup {
         width: 380px;
         height: 817px;
-        margin-bottom: 2rem;
+        margin-bottom: -120px;
     }
     
     .iphone-dynamic-island {
