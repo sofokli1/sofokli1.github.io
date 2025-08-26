@@ -129,19 +129,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Parallax effect for hero sections
-    const heroSections = document.querySelectorAll('.hero, .app-hero');
-    if (heroSections.length > 0) {
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            heroSections.forEach(hero => {
-                const rate = scrolled * -0.5;
-                if (hero.getBoundingClientRect().bottom > 0) {
-                    hero.style.transform = `translateY(${rate}px)`;
-                }
-            });
-        });
-    }
+    // Parallax effect disabled for better user experience
+    // const heroSections = document.querySelectorAll('.hero');
+    // if (heroSections.length > 0) {
+    //     window.addEventListener('scroll', function() {
+    //         const scrolled = window.pageYOffset;
+    //         heroSections.forEach(hero => {
+    //             const rate = scrolled * -0.5;
+    //             if (hero.getBoundingClientRect().bottom > 0) {
+    //                 hero.style.transform = `translateY(${rate}px)`;
+    //             }
+    //         });
+    //     });
+    // }
 
     // Image lazy loading enhancement
     const images = document.querySelectorAll('img');
@@ -321,4 +321,244 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Legal Modal functionality
+    let privacyContent = '';
+    let termsContent = '';
+    let legalModal = null;
+    
+    // Create modal HTML structure
+    function createLegalModal() {
+        if (document.getElementById('legalModal')) return;
+        
+        const modalHTML = `
+            <div class="legal-modal" id="legalModal">
+                <div class="legal-modal-content">
+                    <div class="legal-modal-header">
+                        <h2 id="modalTitle">Legal Document</h2>
+                        <button class="legal-modal-close" id="modalCloseBtn">×</button>
+                    </div>
+                    <div class="legal-modal-body" id="modalContent">
+                        Loading...
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+        legalModal = document.getElementById('legalModal');
+        
+        // Event listeners for modal
+        const closeBtn = document.getElementById('modalCloseBtn');
+        closeBtn.addEventListener('click', closeLegalModal);
+        
+        legalModal.addEventListener('click', (e) => {
+            if (e.target === legalModal) {
+                closeLegalModal();
+            }
+        });
+        
+        // ESC key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && legalModal.classList.contains('active')) {
+                closeLegalModal();
+            }
+        });
+    }
+    
+    // Load legal content from external files
+    async function loadLegalContent(type, appName) {
+        // Determine the correct path based on current location
+        const currentPath = window.location.pathname;
+        const isInAppsFolder = currentPath.includes('/apps/');
+        const basePath = isInAppsFolder ? '../' : './';
+        
+        const filename = type === 'privacy' ? 
+            `${basePath}privacy/${appName}-privacy.html` : 
+            `${basePath}terms/${appName}-terms.html`;
+        
+        try {
+            const response = await fetch(filename);
+            if (!response.ok) throw new Error('Failed to load content');
+            
+            const html = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            
+            // Extract the legal content
+            const legalContentDiv = doc.querySelector('.legal-content');
+            if (legalContentDiv) {
+                return legalContentDiv.innerHTML;
+            } else {
+                throw new Error('Legal content not found');
+            }
+        } catch (error) {
+            console.error('Error loading legal content:', error);
+            return generateFallbackContent(type, appName);
+        }
+    }
+    
+    // Generate fallback content when files can't be loaded
+    function generateFallbackContent(type, appName) {
+        const appDisplayName = appName === 'interval-timer' ? 'Interval Timer ▸ HIIT & Tabata' : 'Smoothly';
+        
+        if (type === 'privacy') {
+            return `
+                <p class="effective-date">Effective Date: January 1, 2024</p>
+                <h2>Introduction</h2>
+                <p>Juxhin Bakalli Technologies ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how ${appDisplayName} ("the App") collects, uses, and safeguards your information.</p>
+                <h2>Information We Collect</h2>
+                <p>We designed ${appDisplayName} with your privacy in mind. The App operates with minimal data collection:</p>
+                <ul>
+                    <li><strong>Usage Data:</strong> We may collect anonymous usage statistics to improve app performance and user experience. This data cannot be used to identify you personally.</li>
+                    <li><strong>App Data:</strong> Your settings and preferences are stored locally on your device and are not transmitted to our servers.</li>
+                    <li><strong>Crash Reports:</strong> If the app crashes, anonymous crash reports may be sent to help us fix bugs and improve stability.</li>
+                </ul>
+                <h2>Information We Do NOT Collect</h2>
+                <p>We respect your privacy and do not collect:</p>
+                <ul>
+                    <li>Personal identification information (name, email, phone number)</li>
+                    <li>Location data</li>
+                    <li>Data from other apps</li>
+                    <li>Contact information</li>
+                    <li>Photos or media files</li>
+                </ul>
+                <h2>Contact Us</h2>
+                <p>If you have any questions or concerns about this Privacy Policy, please contact us through the App Store or at our support channels.</p>
+                <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
+                <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: January 1, 2024</p>
+            `;
+        } else {
+            return `
+                <p class="effective-date">Effective Date: January 1, 2024</p>
+                <h2>1. Acceptance of Terms</h2>
+                <p>By downloading, installing, or using ${appDisplayName} ("the App"), you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
+                <h2>2. License to Use</h2>
+                <p>We grant you a personal, non-exclusive, non-transferable, revocable license to use the App on your iOS devices in accordance with these Terms. This license is for personal, non-commercial use only.</p>
+                <h2>3. User Responsibilities</h2>
+                <p>You agree to:</p>
+                <ul>
+                    <li>Use the App only for lawful purposes and in accordance with these Terms</li>
+                    <li>Not reverse engineer, decompile, or disassemble the App</li>
+                    <li>Not copy, modify, or create derivative works based on the App</li>
+                    <li>Not sell, rent, lease, or sublicense the App</li>
+                </ul>
+                <h2>7. Disclaimers and Limitations of Liability</h2>
+                <p>The App is provided on an "as is" and "as available" basis without warranties of any kind, either express or implied.</p>
+                <h2>Contact Information</h2>
+                <p>For questions about these Terms or the App, please contact us through the App Store or our support channels.</p>
+                <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
+                <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: January 1, 2024</p>
+            `;
+        }
+    }
+    
+    // Open modal with content
+    async function openLegalModal(type, appName) {
+        createLegalModal();
+        
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        
+        // Reset scroll position to top
+        modalContent.scrollTop = 0;
+        
+        // Set title and show loading
+        modalTitle.textContent = type === 'privacy' ? 'Privacy Policy' : 'Terms of Service';
+        modalContent.innerHTML = '<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 20px; height: 20px; border: 2px solid #007AFF; border-radius: 50%; border-top: 2px solid transparent; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem;">Loading...</p></div>';
+        
+        // Show modal
+        legalModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Load and display content
+        const content = await loadLegalContent(type, appName);
+        modalContent.innerHTML = content;
+        
+        // Reset scroll position to top after content is loaded
+        modalContent.scrollTop = 0;
+        
+        // Update URL without page reload
+        const newUrl = `${window.location.pathname}#${type}`;
+        history.pushState({type, appName}, '', newUrl);
+    }
+    
+    // Close modal
+    function closeLegalModal() {
+        if (!legalModal) return;
+        
+        legalModal.classList.remove('active');
+        document.body.style.overflow = '';
+        
+        // Update URL to remove hash
+        const url = new URL(window.location);
+        url.hash = '';
+        history.pushState({}, '', url);
+    }
+    
+    // Handle privacy and terms links
+    function setupLegalLinks() {
+        // Determine current app name from page
+        const currentApp = determineCurrentApp();
+        
+        // Handle privacy links
+        const privacyLinks = document.querySelectorAll('a[href*="privacy"]');
+        privacyLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                openLegalModal('privacy', currentApp);
+            });
+        });
+        
+        // Handle terms links  
+        const termsLinks = document.querySelectorAll('a[href*="terms"]');
+        termsLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                openLegalModal('terms', currentApp);
+            });
+        });
+    }
+    
+    // Determine current app from URL or page content
+    function determineCurrentApp() {
+        const path = window.location.pathname;
+        if (path.includes('interval-timer')) return 'interval-timer';
+        if (path.includes('smoothly')) return 'smoothly';
+        
+        // Default fallback
+        return 'interval-timer';
+    }
+    
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', (e) => {
+        if (e.state && (e.state.type === 'privacy' || e.state.type === 'terms')) {
+            openLegalModal(e.state.type, e.state.appName);
+        } else {
+            closeLegalModal();
+        }
+    });
+    
+    // Check URL on page load for direct links
+    function checkUrlForLegalModal() {
+        const hash = window.location.hash.substring(1);
+        if (hash === 'privacy' || hash === 'terms') {
+            const currentApp = determineCurrentApp();
+            openLegalModal(hash, currentApp);
+        }
+    }
+    
+    // Initialize legal modal functionality
+    setupLegalLinks();
+    checkUrlForLegalModal();
+    
+    // Add spinner CSS
+    const spinnerStyle = document.createElement('style');
+    spinnerStyle.textContent = `
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(spinnerStyle);
 });
