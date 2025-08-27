@@ -403,53 +403,186 @@ document.addEventListener('DOMContentLoaded', function() {
         const appDisplayName = appName === 'interval-timer' ? 'Interval Timer ▸ HIIT & Tabata' : 'Smoothly';
         
         if (type === 'privacy') {
-            return `
-                <p class="effective-date">Effective Date: January 1, 2024</p>
-                <h2>Introduction</h2>
-                <p>Juxhin Bakalli Technologies ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how ${appDisplayName} ("the App") collects, uses, and safeguards your information.</p>
-                <h2>Information We Collect</h2>
-                <p>We designed ${appDisplayName} with your privacy in mind. The App operates with minimal data collection:</p>
-                <ul>
-                    <li><strong>Usage Data:</strong> We may collect anonymous usage statistics to improve app performance and user experience. This data cannot be used to identify you personally.</li>
-                    <li><strong>App Data:</strong> Your settings and preferences are stored locally on your device and are not transmitted to our servers.</li>
-                    <li><strong>Crash Reports:</strong> If the app crashes, anonymous crash reports may be sent to help us fix bugs and improve stability.</li>
-                </ul>
-                <h2>Information We Do NOT Collect</h2>
-                <p>We respect your privacy and do not collect:</p>
-                <ul>
-                    <li>Personal identification information (name, email, phone number)</li>
-                    <li>Location data</li>
-                    <li>Data from other apps</li>
-                    <li>Contact information</li>
-                    <li>Photos or media files</li>
-                </ul>
-                <h2>Contact Us</h2>
-                <p>If you have any questions or concerns about this Privacy Policy, please contact us through the App Store or at our support channels.</p>
-                <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
-                <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: January 1, 2024</p>
-            `;
+            if (appName === 'smoothly') {
+                return `
+                    <p class="effective-date">Last updated: August 25, 2025</p>
+                    <h2>Introduction</h2>
+                    <p>Welcome to Smoothly, an iOS app that generates personalized smoothie recipes using AI and computer vision. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application.</p>
+                    <p>By using Smoothly, you agree to the collection and use of information in accordance with this policy. If you do not agree with our practices, please do not use our app.</p>
+                    
+                    <h2>Information We Collect</h2>
+                    <h3>Camera and Image Data</h3>
+                    <ul>
+                        <li><strong>Purpose:</strong> We use your device's camera to identify fruits and vegetables for smoothie recipe generation</li>
+                        <li><strong>Processing:</strong> Images are processed locally on your device using Apple's Vision framework</li>
+                        <li><strong>Storage:</strong> Camera images are not stored or transmitted to our servers</li>
+                        <li><strong>Permission:</strong> We require camera access, which you can revoke in iOS Settings</li>
+                    </ul>
+                    
+                    <h3>Recipe and Usage Data</h3>
+                    <ul>
+                        <li><strong>Recipe Information:</strong> Ingredients selected, generated recipes, and recipe preferences</li>
+                        <li><strong>Usage Patterns:</strong> Number of recipes generated per week (for subscription limit enforcement)</li>
+                        <li><strong>Storage:</strong> Data is stored locally on your device and optionally synced to Firebase Cloud if you choose cloud backup</li>
+                    </ul>
+                    
+                    <h3>Analytics Data (Optional)</h3>
+                    <ul>
+                        <li><strong>GDPR Compliant:</strong> Analytics collection requires your explicit consent</li>
+                        <li><strong>Data Collected:</strong> App usage statistics, subscription events, general app performance metrics</li>
+                        <li><strong>Provider:</strong> Google Firebase Analytics</li>
+                        <li><strong>Opt-out:</strong> You can disable analytics in the app's GDPR consent settings</li>
+                    </ul>
+                    
+                    <h3>Third-Party Services</h3>
+                    <ul>
+                        <li><strong>OpenAI:</strong> Generate smoothie recipes (ingredients and preferences only, no personal data)</li>
+                        <li><strong>Firebase:</strong> Analytics and optional cloud backup</li>
+                        <li><strong>RevenueCat:</strong> Subscription management</li>
+                    </ul>
+                    
+                    <h2>How We Use Your Information</h2>
+                    <ul>
+                        <li>Process camera images locally to identify ingredients</li>
+                        <li>Generate personalized smoothie recipes using AI</li>
+                        <li>Store your recipe history and preferences</li>
+                        <li>Manage subscription status and usage limits</li>
+                        <li>Analyze usage patterns to improve app features (with consent)</li>
+                    </ul>
+                    
+                    <h2>Your Privacy Rights</h2>
+                    <h3>GDPR Rights (EU Users)</h3>
+                    <ul>
+                        <li><strong>Access:</strong> Request a copy of your personal data</li>
+                        <li><strong>Rectification:</strong> Correct inaccurate personal data</li>
+                        <li><strong>Erasure:</strong> Request deletion of your personal data</li>
+                        <li><strong>Consent Withdrawal:</strong> Withdraw consent for analytics at any time</li>
+                    </ul>
+                    
+                    <h2>Contact Information</h2>
+                    <p>Smoothly App<br>
+                    Email: privacy-smoothly@juxhinbakalli.com<br>
+                    Support: support-smoothly@juxhinbakalli.com</p>
+                    
+                    <h2>Children's Privacy</h2>
+                    <p>Smoothly is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
+                    
+                    <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
+                    <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: August 25, 2025</p>
+                `;
+            } else {
+                return `
+                    <p class="effective-date">Effective Date: January 1, 2024</p>
+                    <h2>Introduction</h2>
+                    <p>Juxhin Bakalli Technologies ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how ${appDisplayName} ("the App") collects, uses, and safeguards your information.</p>
+                    <h2>Information We Collect</h2>
+                    <p>We designed ${appDisplayName} with your privacy in mind. The App operates with minimal data collection:</p>
+                    <ul>
+                        <li><strong>Usage Data:</strong> We may collect anonymous usage statistics to improve app performance and user experience. This data cannot be used to identify you personally.</li>
+                        <li><strong>App Data:</strong> Your settings and preferences are stored locally on your device and are not transmitted to our servers.</li>
+                        <li><strong>Crash Reports:</strong> If the app crashes, anonymous crash reports may be sent to help us fix bugs and improve stability.</li>
+                    </ul>
+                    <h2>Information We Do NOT Collect</h2>
+                    <p>We respect your privacy and do not collect:</p>
+                    <ul>
+                        <li>Personal identification information (name, email, phone number)</li>
+                        <li>Location data</li>
+                        <li>Data from other apps</li>
+                        <li>Contact information</li>
+                        <li>Photos or media files</li>
+                    </ul>
+                    <h2>Contact Us</h2>
+                    <p>If you have any questions or concerns about this Privacy Policy, please contact us through the App Store or at our support channels.</p>
+                    <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
+                    <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: January 1, 2024</p>
+                `;
+            }
         } else {
-            return `
-                <p class="effective-date">Effective Date: January 1, 2024</p>
-                <h2>1. Acceptance of Terms</h2>
-                <p>By downloading, installing, or using ${appDisplayName} ("the App"), you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
-                <h2>2. License to Use</h2>
-                <p>We grant you a personal, non-exclusive, non-transferable, revocable license to use the App on your iOS devices in accordance with these Terms. This license is for personal, non-commercial use only.</p>
-                <h2>3. User Responsibilities</h2>
-                <p>You agree to:</p>
-                <ul>
-                    <li>Use the App only for lawful purposes and in accordance with these Terms</li>
-                    <li>Not reverse engineer, decompile, or disassemble the App</li>
-                    <li>Not copy, modify, or create derivative works based on the App</li>
-                    <li>Not sell, rent, lease, or sublicense the App</li>
-                </ul>
-                <h2>7. Disclaimers and Limitations of Liability</h2>
-                <p>The App is provided on an "as is" and "as available" basis without warranties of any kind, either express or implied.</p>
-                <h2>Contact Information</h2>
-                <p>For questions about these Terms or the App, please contact us through the App Store or our support channels.</p>
-                <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
-                <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: January 1, 2024</p>
-            `;
+            if (appName === 'smoothly') {
+                return `
+                    <p class="effective-date">Last updated: August 25, 2025</p>
+                    
+                    <h2>Agreement to Terms</h2>
+                    <p>By downloading, installing, or using the Smoothly mobile application ("App"), you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, do not use the App.</p>
+                    <p>These Terms constitute a legally binding agreement between you ("User" or "you") and Smoothly ("we," "us," or "our") regarding your use of the App.</p>
+
+                    <h2>Description of Service</h2>
+                    <p>Smoothly is an iOS mobile application that:</p>
+                    <ul>
+                        <li>Uses camera-based computer vision to identify fruits and vegetables</li>
+                        <li>Generates personalized smoothie recipes using artificial intelligence</li>
+                        <li>Provides recipe storage and management features</li>
+                        <li>Offers premium features through subscription plans</li>
+                    </ul>
+
+                    <h2>User Account and Subscription</h2>
+                    <h3>Free Service</h3>
+                    <ul>
+                        <li>Limited to 3 smoothie recipes per week</li>
+                        <li>Access to basic recipe generation features</li>
+                        <li>Local recipe storage</li>
+                    </ul>
+                    <h3>Premium Subscription</h3>
+                    <ul>
+                        <li>Unlimited recipe generation</li>
+                        <li>Enhanced features and customization options</li>
+                        <li>Cloud recipe backup and sync</li>
+                        <li>Processed through RevenueCat and Apple's App Store</li>
+                    </ul>
+
+                    <h2>AI-Generated Content and Disclaimers</h2>
+                    <h3>Health and Safety Disclaimers</h3>
+                    <ul>
+                        <li><strong>Not Medical Advice</strong>: Smoothly does not provide medical or nutritional advice</li>
+                        <li><strong>Allergies</strong>: Always check ingredients for allergens and consult healthcare providers</li>
+                        <li><strong>Dietary Restrictions</strong>: Verify recipe compatibility with your dietary needs</li>
+                        <li><strong>Individual Results</strong>: Health benefits may vary by individual</li>
+                    </ul>
+
+                    <h2>Third-Party Services</h2>
+                    <ul>
+                        <li><strong>OpenAI</strong>: Recipe generation powered by artificial intelligence</li>
+                        <li><strong>RevenueCat</strong>: Subscription management</li>
+                        <li><strong>Firebase</strong>: Analytics and cloud storage (optional)</li>
+                    </ul>
+
+                    <h2>Disclaimers and Limitation of Liability</h2>
+                    <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+                    <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL SMOOTHLY BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES.</p>
+
+                    <h2>Contact Information</h2>
+                    <p>Customer Support: support-smoothly@juxhinbakalli.com<br>
+                    Legal Notices: legal-smoothly@juxhinbakalli.com</p>
+
+                    <h2>Age Requirements</h2>
+                    <p>You must be at least 13 years old to use the App. Users under 18 must have parental consent.</p>
+
+                    <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
+                    <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: August 25, 2025</p>
+                `;
+            } else {
+                return `
+                    <p class="effective-date">Effective Date: January 1, 2024</p>
+                    <h2>1. Acceptance of Terms</h2>
+                    <p>By downloading, installing, or using ${appDisplayName} ("the App"), you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
+                    <h2>2. License to Use</h2>
+                    <p>We grant you a personal, non-exclusive, non-transferable, revocable license to use the App on your iOS devices in accordance with these Terms. This license is for personal, non-commercial use only.</p>
+                    <h2>3. User Responsibilities</h2>
+                    <p>You agree to:</p>
+                    <ul>
+                        <li>Use the App only for lawful purposes and in accordance with these Terms</li>
+                        <li>Not reverse engineer, decompile, or disassemble the App</li>
+                        <li>Not copy, modify, or create derivative works based on the App</li>
+                        <li>Not sell, rent, lease, or sublicense the App</li>
+                    </ul>
+                    <h2>7. Disclaimers and Limitations of Liability</h2>
+                    <p>The App is provided on an "as is" and "as available" basis without warranties of any kind, either express or implied.</p>
+                    <h2>Contact Information</h2>
+                    <p>For questions about these Terms or the App, please contact us through the App Store or our support channels.</p>
+                    <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
+                    <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: January 1, 2024</p>
+                `;
+            }
         }
     }
     
