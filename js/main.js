@@ -366,39 +366,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Load legal content from external files
-    async function loadLegalContent(type, appName) {
-        // Determine the correct path based on current location
-        const currentPath = window.location.pathname;
-        const isInAppsFolder = currentPath.includes('/apps/');
-        const basePath = isInAppsFolder ? '../' : './';
-        
-        const filename = type === 'privacy' ? 
-            `${basePath}privacy/${appName}-privacy.html` : 
-            `${basePath}terms/${appName}-terms.html`;
-        
-        try {
-            const response = await fetch(filename);
-            if (!response.ok) throw new Error('Failed to load content');
-            
-            const html = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            
-            // Extract the legal content
-            const legalContentDiv = doc.querySelector('.legal-content');
-            if (legalContentDiv) {
-                return legalContentDiv.innerHTML;
-            } else {
-                throw new Error('Legal content not found');
-            }
-        } catch (error) {
-            console.error('Error loading legal content:', error);
-            return generateFallbackContent(type, appName);
-        }
+    // Load legal content directly from embedded JavaScript
+    function loadLegalContent(type, appName) {
+        // Always use the embedded content since HTML files have been removed
+        return generateFallbackContent(type, appName);
     }
     
-    // Generate fallback content when files can't be loaded
+    // Generate legal content for privacy policy and terms of service
     function generateFallbackContent(type, appName) {
         const appDisplayName = appName === 'interval-timer' ? 'Interval Timer ▸ HIIT & Tabata' : 'Smoothly';
         
@@ -587,7 +561,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Open modal with content
-    async function openLegalModal(type, appName) {
+    function openLegalModal(type, appName) {
         createLegalModal();
         
         const modalTitle = document.getElementById('modalTitle');
@@ -596,16 +570,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Reset scroll position to top
         modalContent.scrollTop = 0;
         
-        // Set title and show loading
+        // Set title
         modalTitle.textContent = type === 'privacy' ? 'Privacy Policy' : 'Terms of Service';
-        modalContent.innerHTML = '<div style="text-align: center; padding: 2rem;"><div style="display: inline-block; width: 20px; height: 20px; border: 2px solid #007AFF; border-radius: 50%; border-top: 2px solid transparent; animation: spin 1s linear infinite;"></div><p style="margin-top: 1rem;">Loading...</p></div>';
         
         // Show modal
         legalModal.classList.add('active');
         document.body.style.overflow = 'hidden';
         
-        // Load and display content
-        const content = await loadLegalContent(type, appName);
+        // Load and display content directly (no loading spinner needed)
+        const content = loadLegalContent(type, appName);
         modalContent.innerHTML = content;
         
         // Reset scroll position to top after content is loaded
