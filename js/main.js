@@ -446,29 +446,69 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             } else {
                 return `
-                    <p class="effective-date">Effective Date: January 1, 2024</p>
-                    <h2>Introduction</h2>
-                    <p>Juxhin Bakalli Technologies ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how ${appDisplayName} ("the App") collects, uses, and safeguards your information.</p>
-                    <h2>Information We Collect</h2>
-                    <p>We designed ${appDisplayName} with your privacy in mind. The App operates with minimal data collection:</p>
+                    <p class="effective-date">Last updated: October 10, 2023</p>
+                    
+                    <h2>Privacy Policy for IntervalTimer</h2>
+                    <p>Juxhin Bakalli Technologies ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains what information we collect, how we use it, and your rights in relation to it for our application, IntervalTimer ("App").</p>
+                    
+                    <h2>1. Information We Collect</h2>
+                    <p>To provide and improve our service, we collect two types of information, each handled differently:</p>
+                    
+                    <h3>a) Health & Workout Data (HealthKit Integration)</h3>
+                    <p>With your explicit permission, the App integrates with Apple's HealthKit to save your completed workouts. This may include:</p>
                     <ul>
-                        <li><strong>Usage Data:</strong> We may collect anonymous usage statistics to improve app performance and user experience. This data cannot be used to identify you personally.</li>
-                        <li><strong>App Data:</strong> Your settings and preferences are stored locally on your device and are not transmitted to our servers.</li>
-                        <li><strong>Crash Reports:</strong> If the app crashes, anonymous crash reports may be sent to help us fix bugs and improve stability.</li>
+                        <li>Workout duration</li>
+                        <li>Active energy burned</li>
+                        <li>Heart rate data recorded during the workout</li>
                     </ul>
-                    <h2>Information We Do NOT Collect</h2>
-                    <p>We respect your privacy and do not collect:</p>
+                    <p>This data is written directly to the Apple Health app on your device and is managed by you. We do not have access to this information, and it is never transmitted to our servers or shared with any third party. Your HealthKit data is protected by Apple's privacy and security measures.</p>
+                    
+                    <h3>b) Analytics & Usage Data</h3>
+                    <p>If you provide consent, we collect anonymized data about how you interact with the App. This helps us understand user behavior, fix bugs, and improve features. This data is non-personal and cannot be used to identify you. It includes:</p>
                     <ul>
-                        <li>Personal identification information (name, email, phone number)</li>
-                        <li>Location data</li>
-                        <li>Data from other apps</li>
-                        <li>Contact information</li>
-                        <li>Photos or media files</li>
+                        <li>A pseudonymous, random identifier for your device</li>
+                        <li>Device type (e.g., iPhone 15), OS version, and country</li>
+                        <li>In-app events, such as starting a workout, changing a setting, or creating a new timer</li>
                     </ul>
+                    
+                    <h2>2. How We Use Your Information</h2>
+                    <ul>
+                        <li><strong>Health & Workout Data</strong> is used exclusively to provide the core feature of saving your workouts to the Apple Health app, at your direction.</li>
+                        <li><strong>Analytics & Usage Data</strong> is used solely for internal purposes to improve the App's functionality, user experience, and to identify and resolve technical issues.</li>
+                    </ul>
+                    
+                    <h2>3. Data Sharing with Third Parties</h2>
+                    <p>We do not sell, rent, or trade your data. We use one third-party service for analytics, provided you have given consent:</p>
+                    <p><strong>Firebase Analytics:</strong> A service from Google that helps us analyze app usage. The anonymized data described in section 1(b) is shared with Firebase for this purpose. You can learn more about Google's privacy practices here: <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                    
+                    <h2>4. Lawful Basis for Processing (GDPR)</h2>
+                    <p>For users in the European Economic Area (EEA), our lawful basis for processing Analytics & Usage Data is your explicit consent. You provide this consent through the pop-up screen when you first launch the App. You can withdraw this consent at any time.</p>
+                    <p>The processing of Health & Workout Data is based on your explicit consent provided through the HealthKit permission prompt.</p>
+                    
+                    <h2>5. Your Privacy Rights & Choices</h2>
+                    <p>You have control over your data.</p>
+                    <ul>
+                        <li><strong>Analytics Consent:</strong> You can grant or withdraw your consent for analytics collection at any time in the App's Settings screen.</li>
+                        <li><strong>HealthKit Access:</strong> You can manage the App's permission to read and write HealthKit data at any time in the Apple Health app (Health > Sharing > Apps > IntervalTimer).</li>
+                        <li><strong>GDPR Rights:</strong> If you are an EEA resident, you have the right to access, rectify, or erase your data, and to object to or restrict its processing. As we do not store personal data on our servers, these rights primarily apply to the data managed by you within the App and HealthKit. For any inquiries, please contact us.</li>
+                    </ul>
+                    
+                    <h2>6. Data Security</h2>
+                    <p>We implement reasonable technical and organizational measures to protect the information we collect. However, no method of electronic storage or transmission is 100% secure.</p>
+                    
+                    <h2>7. Children's Privacy</h2>
+                    <p>The App is not intended for children under the age of 13, and we do not knowingly collect data from them. If you believe your child has provided us with information, please contact us so we can address the situation.</p>
+                    
+                    <h2>8. Changes to This Privacy Policy</h2>
+                    <p>We may update this policy from time to time. Any changes will be posted on this page with an updated date.</p>
+                    
                     <h2>Contact Us</h2>
-                    <p>If you have any questions or concerns about this Privacy Policy, please contact us through the App Store or at our support channels.</p>
+                    <p>If you have any questions or concerns about this Privacy Policy, please contact us at contact@getintervaltimer.com</p>
+                    
+                    <p>By using the App, you acknowledge that you have read and understood this Privacy Policy.</p>
+                    
                     <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
-                    <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: January 1, 2024</p>
+                    <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: October 10, 2023</p>
                 `;
             }
         } else {
@@ -536,25 +576,110 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             } else {
                 return `
-                    <p class="effective-date">Effective Date: January 1, 2024</p>
+                    <p class="effective-date">Last updated: October 10, 2023</p>
+                    
+                    <h2>Terms of Use</h2>
+                    
                     <h2>1. Acceptance of Terms</h2>
-                    <p>By downloading, installing, or using ${appDisplayName} ("the App"), you agree to be bound by these Terms of Use ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
-                    <h2>2. License to Use</h2>
-                    <p>We grant you a personal, non-exclusive, non-transferable, revocable license to use the App on your iOS devices in accordance with these Terms. This license is for personal, non-commercial use only.</p>
+                    <p>By downloading, installing, or using the Interval Timer app ("the App"), you agree to be bound by these Terms of Use. If you do not agree to these terms, do not use the App.</p>
+                    
+                    <h2>2. Description of Service</h2>
+                    <p>Interval Timer is a multi-platform application designed to help users create and manage custom interval timers for workouts, training sessions, and other timed activities. The App is available on iOS, watchOS, and tvOS platforms.</p>
+                    
                     <h2>3. User Responsibilities</h2>
                     <p>You agree to:</p>
                     <ul>
                         <li>Use the App only for lawful purposes and in accordance with these Terms</li>
-                        <li>Not reverse engineer, decompile, or disassemble the App</li>
-                        <li>Not copy, modify, or create derivative works based on the App</li>
-                        <li>Not sell, rent, lease, or sublicense the App</li>
+                        <li>Not use the App in any way that could damage, disable, or impair the App</li>
+                        <li>Provide accurate information when required</li>
+                        <li>Be responsible for maintaining the confidentiality of your device and any associated accounts</li>
                     </ul>
-                    <h2>7. Disclaimers and Limitations of Liability</h2>
-                    <p>The App is provided on an "as is" and "as available" basis without warranties of any kind, either express or implied.</p>
-                    <h2>Contact Information</h2>
-                    <p>For questions about these Terms or the App, please contact us through the App Store or our support channels.</p>
+                    
+                    <h2>4. Health and Fitness Disclaimer</h2>
+                    <p>The App is intended for general fitness and timing purposes only. You acknowledge that:</p>
+                    <ul>
+                        <li>The App is not a substitute for professional medical advice, diagnosis, or treatment</li>
+                        <li>You should consult with a healthcare professional before beginning any exercise program</li>
+                        <li>You use the App at your own risk and assume full responsibility for any injuries that may occur</li>
+                        <li>We are not responsible for any health problems that may result from training programs or activities you undertake based on the App</li>
+                    </ul>
+                    
+                    <h2>5. HealthKit Integration</h2>
+                    <p>If you choose to enable HealthKit integration:</p>
+                    <ul>
+                        <li>The App may read and write workout data to Apple Health</li>
+                        <li>This data remains on your device and under your control</li>
+                        <li>You can revoke HealthKit permissions at any time through your device settings</li>
+                    </ul>
+                    
+                    <h2>6. Privacy and Data Collection</h2>
+                    <p>Your privacy is important to us. Our data practices include:</p>
+                    <ul>
+                        <li>Analytics data collection (with your consent, in compliance with GDPR where applicable)</li>
+                        <li>No personal information is collected without your explicit consent</li>
+                        <li>All data collection practices are outlined in our Privacy Policy</li>
+                        <li>You may opt-out of analytics at any time through the App settings</li>
+                    </ul>
+                    
+                    <h2>7. Intellectual Property</h2>
+                    <p>The App and its original content, features, and functionality are owned by the developer and are protected by international copyright, trademark, and other intellectual property laws.</p>
+                    
+                    <h2>8. User-Generated Content</h2>
+                    <p>If you create custom timers or workouts:</p>
+                    <ul>
+                        <li>You retain ownership of your created content</li>
+                        <li>The content is stored locally on your device</li>
+                        <li>We do not have access to or claim ownership of your custom timers</li>
+                    </ul>
+                    
+                    <h2>9. Prohibited Uses</h2>
+                    <p>You may not:</p>
+                    <ul>
+                        <li>Modify, reverse engineer, or attempt to extract the source code of the App</li>
+                        <li>Use the App for any commercial purposes without permission</li>
+                        <li>Transmit any viruses, malware, or malicious code through the App</li>
+                        <li>Violate any applicable laws or regulations while using the App</li>
+                    </ul>
+                    
+                    <h2>10. Disclaimers and Limitations of Liability</h2>
+                    <p>THE APP IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+                    <p>To the fullest extent permitted by law:</p>
+                    <ul>
+                        <li>We are not liable for any indirect, incidental, special, or consequential damages</li>
+                        <li>Our total liability shall not exceed the amount you paid for the App</li>
+                        <li>We do not guarantee uninterrupted or error-free operation of the App</li>
+                    </ul>
+                    
+                    <h2>11. Indemnification</h2>
+                    <p>You agree to indemnify and hold harmless the developer from any claims, damages, losses, or expenses arising from your use of the App or violation of these Terms.</p>
+                    
+                    <h2>12. Updates and Modifications</h2>
+                    <p>We reserve the right to:</p>
+                    <ul>
+                        <li>Update or modify these Terms at any time</li>
+                        <li>Modify or discontinue the App with or without notice</li>
+                        <li>Significant changes will be notified through the App or other appropriate means</li>
+                    </ul>
+                    
+                    <h2>13. Termination</h2>
+                    <p>We may terminate or suspend your access to the App immediately, without prior notice, for any breach of these Terms.</p>
+                    
+                    <h2>14. Governing Law</h2>
+                    <p>These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which the developer resides, without regard to its conflict of law provisions.</p>
+                    
+                    <h2>15. Severability</h2>
+                    <p>If any provision of these Terms is found to be unenforceable or invalid, that provision will be limited or eliminated to the minimum extent necessary so that these Terms will otherwise remain in full force and effect.</p>
+                    
+                    <h2>16. Contact Information</h2>
+                    <p>For questions about these Terms of Use, please contact us through the App Store support page or the feedback option within the App.</p>
+                    
+                    <h2>17. Entire Agreement</h2>
+                    <p>These Terms constitute the entire agreement between you and the developer regarding the use of the App and supersede all prior agreements and understandings.</p>
+                    
+                    <p>By using the Interval Timer app, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use.</p>
+                    
                     <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
-                    <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: January 1, 2024</p>
+                    <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: October 10, 2023</p>
                 `;
             }
         }
