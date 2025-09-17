@@ -379,70 +379,213 @@ document.addEventListener('DOMContentLoaded', function() {
         if (type === 'privacy') {
             if (appName === 'smoothly') {
                 return `
-                    <p class="effective-date">Last updated: August 25, 2025</p>
+                    <p class="effective-date">Last updated: September 15, 2025</p>
                     <h2>Introduction</h2>
                     <p>Welcome to Smoothly, an iOS app that generates personalized smoothie recipes using AI and computer vision. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application.</p>
                     <p>By using Smoothly, you agree to the collection and use of information in accordance with this policy. If you do not agree with our practices, please do not use our app.</p>
-                    
+
                     <h2>Information We Collect</h2>
                     <h3>Camera and Image Data</h3>
                     <ul>
                         <li><strong>Purpose:</strong> We use your device's camera to identify fruits and vegetables for smoothie recipe generation</li>
-                        <li><strong>Processing:</strong> Images are processed locally on your device using Apple's Vision framework</li>
-                        <li><strong>Storage:</strong> Camera images are not stored or transmitted to our servers</li>
-                        <li><strong>Permission:</strong> We require camera access, which you can revoke in iOS Settings</li>
+                        <li><strong>Processing:</strong> Images are processed locally on your device using Apple's Vision framework and Core ML models</li>
+                        <li><strong>Storage:</strong> Camera images are not stored, cached, or transmitted to our servers or any third parties</li>
+                        <li><strong>Permission:</strong> Camera access is optional - you can generate recipes without using the camera by manually selecting ingredients</li>
+                        <li><strong>Control:</strong> You can revoke camera permissions at any time in iOS Settings > Privacy & Security > Camera > Smoothly</li>
                     </ul>
-                    
+
                     <h3>Recipe and Usage Data</h3>
                     <ul>
-                        <li><strong>Recipe Information:</strong> Ingredients selected, generated recipes, and recipe preferences</li>
-                        <li><strong>Usage Patterns:</strong> Number of recipes generated per week (for subscription limit enforcement)</li>
-                        <li><strong>Storage:</strong> Data is stored locally on your device and optionally synced to Firebase Cloud if you choose cloud backup</li>
+                        <li><strong>Recipe Information:</strong> Ingredients selected, generated recipes, recipe preferences, and nutritional information</li>
+                        <li><strong>Usage Tracking:</strong> Weekly recipe generation count (stored locally for free tier limits)</li>
+                        <li><strong>App Settings:</strong> Theme preferences, subscription status, and user preferences</li>
+                        <li><strong>Storage:</strong> All data is stored locally on your device using SwiftData - no cloud backup, sync, or server storage</li>
                     </ul>
-                    
-                    <h3>Analytics Data (Optional)</h3>
+
+                    <h3>Analytics Data</h3>
                     <ul>
-                        <li><strong>GDPR Compliant:</strong> Analytics collection requires your explicit consent</li>
-                        <li><strong>Data Collected:</strong> App usage statistics, subscription events, general app performance metrics</li>
-                        <li><strong>Provider:</strong> Google Firebase Analytics</li>
-                        <li><strong>Opt-out:</strong> You can disable analytics in the app's GDPR consent settings</li>
+                        <li><strong>Status:</strong> All analytics collection is completely disabled via Firebase configuration</li>
+                        <li><strong>No Tracking:</strong> We do not collect any usage statistics, behavioral data, performance metrics, or user identifiers</li>
+                        <li><strong>Privacy First:</strong> Your app usage remains completely private - all analytics events are only logged locally for debugging</li>
+                        <li><strong>Technical Implementation:</strong> <code>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</code> is set to <code>true</code> in app configuration</li>
                     </ul>
-                    
-                    <h3>Third-Party Services</h3>
+
+                    <h3>Subscription Data</h3>
                     <ul>
-                        <li><strong>OpenAI:</strong> Generate smoothie recipes (ingredients and preferences only, no personal data)</li>
-                        <li><strong>Firebase:</strong> Analytics and optional cloud backup</li>
-                        <li><strong>RevenueCat:</strong> Subscription management</li>
+                        <li><strong>Provider:</strong> RevenueCat handles all subscription processing and payment transactions</li>
+                        <li><strong>Data Collected:</strong> Subscription status, purchase history, entitlements, and anonymous customer identifiers</li>
+                        <li><strong>Purpose:</strong> Managing premium features, enforcing usage limits for free users, and processing subscription renewals</li>
+                        <li><strong>Third-Party Processing:</strong> RevenueCat processes subscription data according to their privacy policy</li>
                     </ul>
-                    
+
+                    <h3>Technical Data</h3>
+                    <ul>
+                        <li><strong>Remote Configuration:</strong> App feature flags and settings (weekly limits, ML confidence thresholds) fetched from Firebase Remote Config</li>
+                        <li><strong>No Personal Data:</strong> Remote Config requests contain no personal information or device identifiers</li>
+                        <li><strong>Error Logs:</strong> Local error logs for debugging only - not transmitted to servers</li>
+                        <li><strong>No Device Tracking:</strong> We do not collect device identifiers, UDID, advertising IDs, or technical specifications</li>
+                        <li><strong>Machine Learning:</strong> CoreML models run entirely on-device with no data transmission</li>
+                    </ul>
+
                     <h2>How We Use Your Information</h2>
+                    <h3>Core App Functionality (Local Only)</h3>
                     <ul>
-                        <li>Process camera images locally to identify ingredients</li>
-                        <li>Generate personalized smoothie recipes using AI</li>
-                        <li>Store your recipe history and preferences</li>
-                        <li>Manage subscription status and usage limits</li>
-                        <li>Analyze usage patterns to improve app features (with consent)</li>
+                        <li>Process camera images locally using Vision framework and CoreML models (images never leave your device)</li>
+                        <li>Generate personalized smoothie recipes using OpenAI's GPT-4o-mini model (only selected ingredients and dietary preferences sent)</li>
+                        <li>Store your recipe history, preferences, and usage data locally using SwiftData</li>
+                        <li>Manage subscription status and premium features through RevenueCat</li>
+                        <li>Enforce weekly usage limits for free users (3 recipes per week, configurable via Remote Config)</li>
                     </ul>
-                    
+
+                    <h3>Service Improvement</h3>
+                    <ul>
+                        <li>No analytics or tracking - we've removed all data collection</li>
+                        <li>Remote configuration updates for app settings (no personal data)</li>
+                        <li>Recipe generation improvements based on OpenAI's general improvements</li>
+                    </ul>
+
+                    <h3>Communication</h3>
+                    <ul>
+                        <li>Send important updates about the app (if subscribed to notifications)</li>
+                        <li>Respond to support requests</li>
+                    </ul>
+
+                    <h2>Third-Party Services</h2>
+                    <h3>OpenAI</h3>
+                    <ul>
+                        <li><strong>Purpose:</strong> Generate smoothie recipes based on selected ingredients using GPT-4o-mini model</li>
+                        <li><strong>Data Shared:</strong> Only ingredient names and basic dietary preferences (no personal information)</li>
+                        <li><strong>Privacy:</strong> No camera images, device identifiers, or personal data are shared with OpenAI</li>
+                        <li><strong>API Usage:</strong> Requests are made directly to OpenAI's API with obfuscated API keys for security</li>
+                        <li><strong>Policy:</strong> <a href="https://openai.com/privacy/" target="_blank">OpenAI Privacy Policy</a></li>
+                    </ul>
+
+                    <h3>Firebase (Google) - Limited Use</h3>
+                    <ul>
+                        <li><strong>Services:</strong> Remote Config only (Analytics, Firestore, and Authentication have been removed)</li>
+                        <li><strong>Data:</strong> No personal data transmitted - app only fetches configuration values (weekly limits, ML thresholds)</li>
+                        <li><strong>Purpose:</strong> Dynamic app configuration and feature flags</li>
+                        <li><strong>Privacy:</strong> All analytics collection is disabled via <code>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</code></li>
+                        <li><strong>Policy:</strong> <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
+                    </ul>
+
+                    <h3>RevenueCat</h3>
+                    <ul>
+                        <li><strong>Purpose:</strong> Subscription management, payment processing, and premium feature access</li>
+                        <li><strong>Data:</strong> Purchase history, subscription status, anonymous customer identifiers, and App Store receipt data</li>
+                        <li><strong>Integration:</strong> Manages weekly recipe limits for free users and unlimited access for premium subscribers</li>
+                        <li><strong>Policy:</strong> <a href="https://www.revenuecat.com/privacy/" target="_blank">RevenueCat Privacy Policy</a></li>
+                    </ul>
+
+                    <h2>Data Storage and Security</h2>
+                    <h3>Local Storage</h3>
+                    <ul>
+                        <li>All user data is stored locally using SwiftData (Apple's secure local database framework)</li>
+                        <li>Recipes, preferences, and usage tracking are stored securely on your device with iOS data protection</li>
+                        <li>Data is sandboxed and not accessible to other apps</li>
+                        <li>All local data is automatically deleted when you uninstall the app</li>
+                    </ul>
+
+                    <h3>No Cloud Storage</h3>
+                    <ul>
+                        <li>The app does not use any cloud storage services</li>
+                        <li>No data is backed up to iCloud, Firebase, or any remote servers</li>
+                        <li>Your recipe history and preferences remain entirely on your device</li>
+                    </ul>
+
+                    <h3>Security Measures</h3>
+                    <ul>
+                        <li>All network communications use HTTPS encryption with certificate pinning</li>
+                        <li>API keys are obfuscated and securely stored using multiple layers of protection</li>
+                        <li>Camera processing uses Apple's Vision framework with on-device CoreML models only</li>
+                        <li>No sensitive data is logged, cached, or transmitted unnecessarily</li>
+                        <li>Timeout protections prevent hanging network requests</li>
+                        <li>Input validation ensures only safe ingredients are processed</li>
+                    </ul>
+
                     <h2>Your Privacy Rights</h2>
                     <h3>GDPR Rights (EU Users)</h3>
                     <ul>
                         <li><strong>Access:</strong> Request a copy of your personal data</li>
                         <li><strong>Rectification:</strong> Correct inaccurate personal data</li>
                         <li><strong>Erasure:</strong> Request deletion of your personal data</li>
+                        <li><strong>Portability:</strong> Receive your data in a portable format</li>
+                        <li><strong>Objection:</strong> Object to processing of your personal data</li>
                         <li><strong>Consent Withdrawal:</strong> Withdraw consent for analytics at any time</li>
                     </ul>
-                    
+
+                    <h3>California Privacy Rights (CCPA)</h3>
+                    <ul>
+                        <li><strong>Right to Know:</strong> What personal information we collect and how it's used</li>
+                        <li><strong>Right to Delete:</strong> Request deletion of your personal information</li>
+                        <li><strong>Right to Non-Discrimination:</strong> Equal service regardless of privacy choices</li>
+                    </ul>
+
+                    <h3>How to Exercise Your Rights</h3>
+                    <ul>
+                        <li><strong>Local Data:</strong> All data is stored locally - simply delete the app to remove all personal information</li>
+                        <li><strong>Email:</strong> Contact us at privacy-smoothly@juxhinbakalli.com for any privacy-related requests</li>
+                        <li><strong>Subscription Data:</strong> Contact RevenueCat support for subscription-related data requests</li>
+                        <li><strong>No Account Required:</strong> The app doesn't use accounts, so no account deletion process is needed</li>
+                    </ul>
+
+                    <h2>Children's Privacy</h2>
+                    <p>Smoothly is not intended for children under 13. We do not knowingly collect personal information from children under 13. If we discover that a child under 13 has provided us with personal information, we will delete it immediately.</p>
+
+                    <h2>Data Retention</h2>
+                    <h3>Local Data</h3>
+                    <ul>
+                        <li>Recipe history, preferences, and usage data are stored locally until you delete the app</li>
+                        <li>No data is retained on external servers - all information is device-only</li>
+                        <li>SwiftData automatically manages local storage and cleanup</li>
+                    </ul>
+
+                    <h3>Data Deletion</h3>
+                    <ul>
+                        <li>Since all data is stored locally, simply deleting the app removes all your personal information</li>
+                        <li>For subscription data managed by RevenueCat, contact privacy-smoothly@juxhinbakalli.com</li>
+                        <li>Third-party services (OpenAI, RevenueCat) retain data according to their respective policies</li>
+                    </ul>
+
+                    <h2>International Data Transfers</h2>
+                    <p>Since most data processing occurs locally on your device, international data transfers are minimal:</p>
+                    <ul>
+                        <li>OpenAI API requests (ingredient lists only) are processed in the United States</li>
+                        <li>Firebase Remote Config requests (no personal data) may be processed globally by Google</li>
+                        <li>RevenueCat subscription data is processed according to their global infrastructure</li>
+                        <li>All camera images and recipe data remain on your device only</li>
+                    </ul>
+
+                    <h2>Changes to This Privacy Policy</h2>
+                    <p>We may update this Privacy Policy from time to time. Changes will be posted in the app and on our website. Continued use of the app after changes constitutes acceptance of the new policy.</p>
+                    <ul>
+                        <li><strong>Notification:</strong> In-app notification for material changes</li>
+                        <li><strong>Effective Date:</strong> Changes take effect immediately upon posting</li>
+                        <li><strong>Version History:</strong> Previous versions available upon request</li>
+                    </ul>
+
                     <h2>Contact Information</h2>
+                    <h3>Data Controller</h3>
                     <p>Smoothly App<br>
                     Email: privacy-smoothly@juxhinbakalli.com<br>
                     Support: support-smoothly@juxhinbakalli.com</p>
-                    
-                    <h2>Children's Privacy</h2>
-                    <p>Smoothly is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
-                    
+
+                    <h3>Data Protection Officer (EU)</h3>
+                    <p>For GDPR-related inquiries:<br>
+                    Email: dpo-smoothly@juxhinbakalli.com</p>
+
+                    <h3>Mailing Address</h3>
+                    <p>Zamknieta 10 lok.1.5, 30-554 Krakow, Poland</p>
+
+                    <h2>Compliance Certifications</h2>
+                    <ul>
+                        <li><strong>Apple App Store:</strong> Compliant with iOS privacy requirements</li>
+                        <li><strong>GDPR:</strong> General Data Protection Regulation compliant</li>
+                        <li><strong>CCPA:</strong> California Consumer Privacy Act compliant</li>
+                    </ul>
+
                     <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
-                    <p class="text-center">© 2023 Juxhin Bakalli Technologies. All rights reserved.<br>Last updated: August 25, 2025</p>
+                    <p class="text-center">This privacy policy is designed to be transparent and user-friendly while ensuring full legal compliance. If you have any questions about how your data is handled, please don't hesitate to contact us.</p>
                 `;
             } else {
                 return `
