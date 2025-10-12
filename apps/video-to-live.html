@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smoothly - Juxhin Bakalli Technologies</title>
+    <title>Video to Live - Maker - Juxhin Bakalli Technologies</title>
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
@@ -14,8 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .smoothly-hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/smoothly-hero-background-2.jpg');
+        .video-to-live-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/video-to-live-hero-background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -64,13 +64,13 @@
             </button>
         </div>
     </nav>
-    
+
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-    
+
     <!-- Mobile Navigation Menu -->
     <nav class="mobile-nav-menu" id="mobileNavMenu">
-        <div class="nav-brand-mobile">Smoothly</div>
+        <div class="nav-brand-mobile">Video to Live</div>
         <ul>
             <li><a href="../index.html#apps">Apps</a></li>
             <li><a href="#privacy">Privacy</a></li>
@@ -78,7 +78,7 @@
         </ul>
     </nav>
 
-    <section class="app-hero smoothly-hero">
+    <section class="app-hero video-to-live-hero">
         <div class="container">
             <div class="app-hero-content">
                 <div class="app-hero-grid">
@@ -87,15 +87,15 @@
                             <div class="iphone-screen">
                                 <div class="iphone-dynamic-island"></div>
                                 <!-- Try to load video first, fallback to slideshow -->
-                                <video class="app-video" autoplay muted loop playsinline poster="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ed/4c/6b/ed4c6b39-c35f-7e82-daa5-ce56a0cb623a/1.png/392x0w.jpg">
-                                    <source src="../assets/smoothly-preview.mov" type="video/quicktime">
+                                <video class="app-video" autoplay muted loop playsinline>
+                                    <source src="../assets/video-to-live-preview.mp4" type="video/mp4">
                                     <!-- Fallback to slideshow if video doesn't exist -->
                                 </video>
                                 <div class="app-slideshow" id="appSlideshow" style="display: none;">
-                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/4b/08/12/4b08126b-b366-b255-b573-fdf64619447a/1.png/392x0w.jpg" alt="Smoothly Home Screen" class="slide active">
-                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/89/de/d9/89ded9f3-93ae-79ce-12a6-f2ff583f79a7/2.png/392x0w.jpg" alt="Recipe Details Screen" class="slide">
-                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/88/9c/8a/889c8a8e-3f23-3a11-db76-4008b0e7799c/3.png/392x0w.jpg" alt="Ingredient Selection Screen" class="slide">
-                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/89/ca/4a/89ca4ac6-2b54-bb30-248c-3467ded7a17a/4.png/392x0w.jpg" alt="AI Recipe Generation" class="slide">
+                                    <img src="../assets/video-to-live-screenshot-1.png" alt="Video Selection Screen" class="slide active">
+                                    <img src="../assets/video-to-live-screenshot-2.png" alt="Live Photo Preview" class="slide">
+                                    <img src="../assets/video-to-live-screenshot-3.png" alt="Export Options" class="slide">
+                                    <img src="../assets/video-to-live-screenshot-4.png" alt="Gallery View" class="slide">
                                     <div class="slide-indicators">
                                         <div class="indicator active"></div>
                                         <div class="indicator"></div>
@@ -108,19 +108,19 @@
                     </div>
                     <div class="app-info">
                         <div class="app-header-with-icon">
-                            <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/07/b6/55/07b65543-9181-f268-6a49-d466c98a1bd3/AppIcon-0-1x_U007epad-0-1-85-220-0.png/246x0w.png" alt="Smoothly App Icon" class="app-page-icon">
-                            <h1>Smoothly - AI Smoothie Maker</h1>
+                            <img src="../assets/video-to-live-icon.png" alt="Video to Live App Icon" class="app-page-icon">
+                            <h1>Video to Live - Maker</h1>
                         </div>
-                        <p class="tagline">Transform your fruits and vegetables into delicious smoothies with AI-powered recipe creation!</p>
+                        <p class="tagline">Transform your videos into stunning Live Photos with ease!</p>
                         <ul class="app-features">
-                            <li>AI Camera Scanner for ingredient recognition</li>
-                            <li>Personalized recipe creation</li>
-                            <li>Detailed nutritional information</li>
-                            <li>Recipe history tracking</li>
-                            <li>Offline access to saved recipes</li>
-                            <li>Works on iPhone, iPad, macOS & Apple Vision Pro</li>
+                            <li>Convert any video to Live Photo format</li>
+                            <li>Trim and edit video clips precisely</li>
+                            <li>Select the perfect key frame</li>
+                            <li>Save directly to your Photos library</li>
+                            <li>Simple and intuitive interface</li>
+                            <li>Works on iPhone, iPad & Apple Vision Pro</li>
                         </ul>
-                        <a href="https://apps.apple.com/us/app/smoothly-ai-smoothie-maker/id6751173823" target="_blank" class="app-store-badge app-store-badge-large">
+                        <a href="#" target="_blank" class="app-store-badge app-store-badge-large">
                             <img src="../assets/appstore-badge-white.svg" alt="Download on the App Store">
                         </a>
                     </div>
@@ -134,16 +134,16 @@
             <h2 class="section-title">App Preview</h2>
             <div class="screenshots-grid">
                 <div class="screenshot">
-                    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/4b/08/12/4b08126b-b366-b255-b573-fdf64619447a/1.png/300x0w.jpg" alt="Smoothly Home Screen" loading="lazy">
+                    <img src="../assets/video-to-live-screenshot-1.png" alt="Video Selection Screen" loading="lazy">
                 </div>
                 <div class="screenshot">
-                    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/89/de/d9/89ded9f3-93ae-79ce-12a6-f2ff583f79a7/2.png/300x0w.jpg" alt="Recipe Details Screen" loading="lazy">
+                    <img src="../assets/video-to-live-screenshot-2.png" alt="Live Photo Preview" loading="lazy">
                 </div>
                 <div class="screenshot">
-                    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/88/9c/8a/889c8a8e-3f23-3a11-db76-4008b0e7799c/3.png/300x0w.jpg" alt="Ingredient Selection Screen" loading="lazy">
+                    <img src="../assets/video-to-live-screenshot-3.png" alt="Export Options" loading="lazy">
                 </div>
                 <div class="screenshot">
-                    <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/89/ca/4a/89ca4ac6-2b54-bb30-248c-3467ded7a17a/4.png/300x0w.jpg" alt="AI Recipe Generation" loading="lazy">
+                    <img src="../assets/video-to-live-screenshot-4.png" alt="Gallery View" loading="lazy">
                 </div>
             </div>
         </div>
@@ -151,37 +151,37 @@
 
     <section class="features-detail">
         <div class="container">
-            <h2 class="section-title">Why Choose Smoothly?</h2>
+            <h2 class="section-title">Why Choose Video to Live?</h2>
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📸</div>
-                    <h3>Ingredient Scanning</h3>
-                    <p>Point your camera at fruits and vegetables to instantly detect what ingredients you have available.</p>
+                    <div class="feature-icon">🎬</div>
+                    <h3>Video Conversion</h3>
+                    <p>Easily convert any video from your library into a Live Photo with just a few taps.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI Recipe Generation</h3>
-                    <p>Get personalized smoothie recipes created by AI based on your scanned ingredients and preferences.</p>
+                    <div class="feature-icon">✂️</div>
+                    <h3>Precise Trimming</h3>
+                    <p>Trim your videos to capture the perfect moment for your Live Photo creation.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🥤</div>
-                    <h3>Perfect Combinations</h3>
-                    <p>Discover new flavor combinations and optimal ingredient ratios for delicious smoothies.</p>
+                    <div class="feature-icon">🖼️</div>
+                    <h3>Key Frame Selection</h3>
+                    <p>Choose the perfect still frame that will be displayed as your Live Photo preview.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Nutritional Insights</h3>
-                    <p>View detailed nutritional information for each recipe including calories, vitamins, and minerals.</p>
+                    <div class="feature-icon">💾</div>
+                    <h3>Instant Save</h3>
+                    <p>Save your created Live Photos directly to your Photos library for immediate use.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Dietary Preferences</h3>
-                    <p>Set your dietary goals and restrictions to get recipes tailored to your lifestyle.</p>
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Processing</h3>
+                    <p>Quick and efficient conversion process that doesn't compromise on quality.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
                     <h3>Simple Interface</h3>
-                    <p>Intuitive design that makes creating healthy smoothies quick and effortless.</p>
+                    <p>Intuitive design makes creating Live Photos quick and effortless.</p>
                 </div>
             </div>
         </div>
@@ -189,11 +189,11 @@
 
     <section class="about-section">
         <div class="container">
-            <h2 class="section-title">Perfect for Every Health Enthusiast</h2>
+            <h2 class="section-title">Bring Your Videos to Life</h2>
             <div class="about-content">
-                <p>Whether you're a fitness enthusiast looking for post-workout nutrition or someone trying to incorporate more fruits and vegetables into your diet, Smoothly makes healthy eating effortless. Simply scan your ingredients with the AI camera scanner and let AI create the perfect smoothie recipe for you.</p>
+                <p>Video to Live makes it simple to transform your favorite video moments into engaging Live Photos. Whether it's a memorable moment from a vacation, a funny pet video, or a special celebration, bring your videos to life with the magic of Live Photos. Use them as wallpapers, share them with friends, or relive your favorite moments with a simple long press.</p>
                 <br>
-                <p><strong>Available now</strong> on the App Store - Transform your fruits and vegetables into delicious smoothies with AI-powered recipes!</p>
+                <p><strong>Available now</strong> on the App Store - Start creating amazing Live Photos today!</p>
             </div>
         </div>
     </section>
@@ -202,20 +202,20 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>Smoothly - AI Smoothie Maker</h3>
-                    <p>Transform fruits and vegetables into delicious smoothies</p>
+                    <h3>Video to Live - Maker</h3>
+                    <p>Transform videos into stunning Live Photos</p>
                 </div>
                 <div class="footer-links">
                     <h4>Support</h4>
                     <ul>
                         <li><a href="#privacy">Privacy Policy</a></li>
                         <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank">Terms of Use</a></li>
-                        <li><a href="https://apps.apple.com/us/app/smoothly-ai-smoothie-maker/id6751173823" target="_blank">App Store</a></li>
+                        <li><a href="#" target="_blank">App Store</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h4>Categories</h4>
-                    <p>Food & Drink</p>
+                    <p>Photo & Video</p>
                     <p>Available Now</p>
                 </div>
             </div>

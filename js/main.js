@@ -374,10 +374,79 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Generate legal content for privacy policy and terms of service
     function generateFallbackContent(type, appName) {
-        const appDisplayName = appName === 'interval-timer' ? 'Interval Timer ▸ HIIT & Tabata' : 'Smoothly';
-        
+        const appDisplayName = appName === 'interval-timer' ? 'Interval Timer ▸ HIIT & Tabata' : appName === 'video-to-live' ? 'Video to Live - Maker' : 'Smoothly';
+
         if (type === 'privacy') {
-            if (appName === 'smoothly') {
+            if (appName === 'video-to-live') {
+                return `
+                    <p class="effective-date">Last Updated: October 11, 2025</p>
+
+                    <h2>Overview</h2>
+                    <p>Video to Live ("the App") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our app.</p>
+
+                    <h2>Information We Collect</h2>
+                    <p><strong>We do not collect, store, or transmit any personal information.</strong></p>
+                    <p>The App operates entirely on your device and does not communicate with external servers.</p>
+
+                    <h2>Photo Library Access</h2>
+                    <p>The App requests access to your photo library for the following purposes:</p>
+                    <ul>
+                        <li><strong>Reading:</strong> To allow you to select videos from your photo library to convert into Live Photos</li>
+                        <li><strong>Writing:</strong> To save the generated Live Photos back to your photo library</li>
+                    </ul>
+                    <p>All video processing and Live Photo generation happens locally on your device. Your photos and videos never leave your device.</p>
+
+                    <h2>Data Storage</h2>
+                    <ul>
+                        <li>All data processing occurs locally on your device</li>
+                        <li>We do not store any of your photos, videos, or personal information on our servers</li>
+                        <li>We do not have servers or cloud storage</li>
+                        <li>Your content remains private and under your control at all times</li>
+                    </ul>
+
+                    <h2>Third-Party Services</h2>
+                    <p>The App does not use any third-party analytics, advertising, or tracking services.</p>
+
+                    <h2>Children's Privacy</h2>
+                    <p>The App does not knowingly collect any information from children under the age of 13. The App can be used by all ages safely as no data is collected.</p>
+
+                    <h2>Changes to This Policy</h2>
+                    <p>We may update this Privacy Policy from time to time. Any changes will be reflected in the "Last Updated" date above. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+                    <h2>Contact Us</h2>
+                    <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+                    <p><strong>Email:</strong> privacy-videotolive@juxhinbakalli.com</p>
+
+                    <h2>Your Rights</h2>
+                    <p>Since we do not collect or store any personal data, there is no data to access, modify, or delete. All content you work with remains solely in your device's photo library under your control.</p>
+
+                    <h2>Permissions Summary</h2>
+                    <table style="width: 100%; border-collapse: collapse; margin: 2rem 0;">
+                        <thead>
+                            <tr style="background: var(--gray-lighter); text-align: left;">
+                                <th style="padding: 0.75rem; border: 1px solid var(--gray-light);">Permission</th>
+                                <th style="padding: 0.75rem; border: 1px solid var(--gray-light);">Purpose</th>
+                                <th style="padding: 0.75rem; border: 1px solid var(--gray-light);">Required</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid var(--gray-light);">Photo Library Read</td>
+                                <td style="padding: 0.75rem; border: 1px solid var(--gray-light);">Select videos to convert</td>
+                                <td style="padding: 0.75rem; border: 1px solid var(--gray-light);">Yes</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid var(--gray-light);">Photo Library Write</td>
+                                <td style="padding: 0.75rem; border: 1px solid var(--gray-light);">Save generated Live Photos</td>
+                                <td style="padding: 0.75rem; border: 1px solid var(--gray-light);">Yes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--gray-lighter);">
+                    <p class="text-center"><strong>Video to Live</strong> respects your privacy and operates with complete transparency. Your photos and videos are yours alone.</p>
+                `;
+            } else if (appName === 'smoothly') {
                 return `
                     <p class="effective-date">Last updated: September 15, 2025</p>
                     <h2>Introduction</h2>
@@ -899,7 +968,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const path = window.location.pathname;
         if (path.includes('interval-timer')) return 'interval-timer';
         if (path.includes('smoothly')) return 'smoothly';
-        
+        if (path.includes('video-to-live')) return 'video-to-live';
+
         // Default fallback
         return 'interval-timer';
     }
