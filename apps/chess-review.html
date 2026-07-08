@@ -462,8 +462,21 @@
             document.querySelectorAll('.cr-move').forEach(node => {
                 node.classList.toggle('active', Number(node.dataset.ply) === ply);
             });
-            const activeNode = document.querySelector('.cr-move.active');
-            if (activeNode) activeNode.scrollIntoView({ block: 'nearest' });
+            // Keep the active move visible by scrolling ONLY the move-list box.
+            // scrollIntoView bubbles to the page and yanks the viewport down to
+            // the list on every prev/next tap (worst on the mobile single-column
+            // layout, where the list sits below the board).
+            const movesBox = el('cr-moves');
+            const activeNode = movesBox.querySelector('.cr-move.active');
+            if (activeNode) {
+                const boxRect = movesBox.getBoundingClientRect();
+                const nodeRect = activeNode.getBoundingClientRect();
+                if (nodeRect.top < boxRect.top) {
+                    movesBox.scrollTop += nodeRect.top - boxRect.top;
+                } else if (nodeRect.bottom > boxRect.bottom) {
+                    movesBox.scrollTop += nodeRect.bottom - boxRect.bottom;
+                }
+            }
         }
 
         function renderMoves() {
