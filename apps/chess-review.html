@@ -329,6 +329,29 @@
             }));
         }
 
+        // Decode the compact `?g=` payload the Playdate game emits into a UCI move
+        // string. Mirrors Compact.encodeMoves in the game's main.lua: 2 bytes per
+        // move, big-endian, packed as (fromSq<<10)|(toSq<<4)|promo, base64 -> base64url.
+        // Squares are 0..63 = (rank-1)*8 + (file-1), file 0=a; promo 1=n,2=b,3=r,4=q.
+        const PROMO_CHARS = { 1: 'n', 2: 'b', 3: 'r', 4: 'q' };
+        function decodeCompactMoves(g) {
+            let b64 = g.replace(/-/g, '+').replace(/_/g, '/');
+            b64 += '='.repeat((4 - (b64.length % 4)) % 4);
+            let bin;
+            try { bin = atob(b64); } catch (e) { return null; }
+            if (bin.length < 2) return null;
+            const sq = i => String.fromCharCode(97 + (i & 7)) + ((i >> 3) + 1);
+            const out = [];
+            for (let i = 0; i + 1 < bin.length; i += 2) {
+                const word = (bin.charCodeAt(i) << 8) | bin.charCodeAt(i + 1);
+                const from = (word >> 10) & 0x3F;
+                const to = (word >> 4) & 0x3F;
+                const promo = word & 0x0F;
+                out.push(sq(from) + sq(to) + (PROMO_CHARS[promo] || ''));
+            }
+            return out.length ? out.join(' ') : null;
+        }
+
         // Returns { verbose } or throws with a friendly message.
         function buildGame(text) {
             const game = new Chess();
@@ -562,9 +585,14 @@
         function boot() {
             render(); // empty starting position
             const params = new URLSearchParams(window.location.search);
+            const gParam = params.get('g');
             const movesParam = params.get('moves');
             const pgnParam = params.get('pgn');
-            if (movesParam) {
+            const gMoves = gParam ? decodeCompactMoves(gParam) : null;
+            if (gMoves) {
+                el('cr-notation').value = gMoves;
+                loadFromText(gMoves, { updateUrl: false });
+            } else if (movesParam) {
                 el('cr-notation').value = movesParam.replace(/[,]+/g, ' ').trim();
                 loadFromText(movesParam, { updateUrl: false });
             } else if (pgnParam) {
