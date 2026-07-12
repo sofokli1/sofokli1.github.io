@@ -167,11 +167,14 @@
             border-radius: 10px;
             min-width: 52px;
             padding: 10px 14px;
-            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             color: var(--dark);
             transition: background 0.12s ease;
         }
+        .cr-ctrl-btn svg { display: block; width: 19px; height: 19px; }
         .cr-ctrl-btn:hover { background: var(--gray-lighter); }
         .cr-ctrl-btn:disabled { opacity: 0.4; cursor: default; }
 
@@ -263,11 +266,21 @@
             <div class="cr-board-wrap">
                 <div class="cr-board" id="cr-board"></div>
                 <div class="cr-controls">
-                    <button class="cr-ctrl-btn" id="cr-first" title="Start (Home)">⏮</button>
-                    <button class="cr-ctrl-btn" id="cr-prev" title="Previous (←)">◀</button>
-                    <button class="cr-ctrl-btn" id="cr-next" title="Next (→)">▶</button>
-                    <button class="cr-ctrl-btn" id="cr-last" title="End (End)">⏭</button>
-                    <button class="cr-ctrl-btn" id="cr-flip" title="Flip board">⇅</button>
+                    <button class="cr-ctrl-btn" id="cr-first" title="Start (Home)" aria-label="Go to start">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5v14"/><path d="M18 5l-7.5 7 7.5 7"/></svg>
+                    </button>
+                    <button class="cr-ctrl-btn" id="cr-prev" title="Previous (←)" aria-label="Previous move">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5l-7 7 7 7"/></svg>
+                    </button>
+                    <button class="cr-ctrl-btn" id="cr-next" title="Next (→)" aria-label="Next move">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 5l7 7-7 7"/></svg>
+                    </button>
+                    <button class="cr-ctrl-btn" id="cr-last" title="End (End)" aria-label="Go to end">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5v14"/><path d="M6 5l7.5 7-7.5 7"/></svg>
+                    </button>
+                    <button class="cr-ctrl-btn" id="cr-flip" title="Flip board" aria-label="Flip board">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 17.5V6.5"/><path d="M5 10l3.5-3.5L12 10"/><path d="M15.5 6.5v11"/><path d="M12 14l3.5 3.5L19 14"/></svg>
+                    </button>
                 </div>
             </div>
 
