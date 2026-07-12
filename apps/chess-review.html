@@ -366,24 +366,27 @@
             }));
         }
 
-        // Decode the compact `?g=` payload the Playdate game emits into a UCI move
-        // string. Mirrors Compact.encodeMoves in the game's main.lua: 2 bytes per
-        // move, big-endian, packed as (fromSq<<10)|(toSq<<4)|promo, base64 -> base64url.
-        // Squares are 0..63 = (rank-1)*8 + (file-1), file 0=a; promo 1=n,2=b,3=r,4=q.
+        // Decode the compact `?G=` payload the Playdate game's share QR emits into
+        // a UCI move string. Mirrors Compact.encodeMovesB36 in the game's main.lua:
+        // 3 chars of 0-9A-Z per move, big-endian base36, value =
+        // (fromSq*64 + toSq)*5 + promo. The uppercase-only alphabet keeps the whole
+        // QR URL in alphanumeric mode, which is why this replaced the old base64
+        // `?g=` format (that one never shipped). Squares are 0..63 =
+        // (rank-1)*8 + (file-1), file 0=a; promo 1=n,2=b,3=r,4=q.
         const PROMO_CHARS = { 1: 'n', 2: 'b', 3: 'r', 4: 'q' };
         function decodeCompactMoves(g) {
-            let b64 = g.replace(/-/g, '+').replace(/_/g, '/');
-            b64 += '='.repeat((4 - (b64.length % 4)) % 4);
-            let bin;
-            try { bin = atob(b64); } catch (e) { return null; }
-            if (bin.length < 2) return null;
+            if (!g || g.length % 3 !== 0 || !/^[0-9A-Z]+$/.test(g)) return null;
+            const B36 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             const sq = i => String.fromCharCode(97 + (i & 7)) + ((i >> 3) + 1);
             const out = [];
-            for (let i = 0; i + 1 < bin.length; i += 2) {
-                const word = (bin.charCodeAt(i) << 8) | bin.charCodeAt(i + 1);
-                const from = (word >> 10) & 0x3F;
-                const to = (word >> 4) & 0x3F;
-                const promo = word & 0x0F;
+            for (let i = 0; i < g.length; i += 3) {
+                const v = (B36.indexOf(g[i]) * 36 + B36.indexOf(g[i + 1])) * 36
+                          + B36.indexOf(g[i + 2]);
+                const promo = v % 5;
+                const pair = (v - promo) / 5;
+                const from = (pair / 64) | 0;
+                const to = pair % 64;
+                if (from > 63) return null;
                 out.push(sq(from) + sq(to) + (PROMO_CHARS[promo] || ''));
             }
             return out.length ? out.join(' ') : null;
@@ -622,7 +625,7 @@
         function boot() {
             render(); // empty starting position
             const params = new URLSearchParams(window.location.search);
-            const gParam = params.get('g');
+            const gParam = params.get('G');
             const movesParam = params.get('moves');
             const pgnParam = params.get('pgn');
             const gMoves = gParam ? decodeCompactMoves(gParam) : null;
