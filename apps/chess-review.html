@@ -77,6 +77,7 @@
             cursor: pointer;
             font-family: inherit;
             transition: background 0.15s ease, transform 0.05s ease;
+            touch-action: manipulation;
         }
         .cr-btn:hover { background: #0051D5; }
         .cr-btn:active { transform: translateY(1px); }
@@ -173,6 +174,8 @@
             cursor: pointer;
             color: var(--dark);
             transition: background 0.12s ease;
+            /* Taps only: stops double-tap-to-zoom when stepping moves quickly. */
+            touch-action: manipulation;
         }
         .cr-ctrl-btn svg { display: block; width: 19px; height: 19px; }
         .cr-ctrl-btn:hover { background: var(--gray-lighter); }
@@ -212,6 +215,7 @@
             cursor: pointer;
             font-family: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
             color: var(--dark);
+            touch-action: manipulation;
         }
         .cr-move:hover { background: var(--gray-lighter); }
         .cr-move.active { background: var(--primary-color); color: #fff; }
