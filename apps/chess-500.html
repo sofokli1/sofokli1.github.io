@@ -49,10 +49,8 @@
 
         /* Header + hero */
         .c5-header {
-            padding: 20px 24px 0;
-            background-color: var(--c5-yellow);
-            background-image: repeating-conic-gradient(var(--c5-yellow-deep) 0% 25%, transparent 0% 50%);
-            background-size: 40px 40px;
+            padding: 20px 24px 16px;
+            background: var(--c5-yellow);
         }
         .c5-nav {
             display: flex;
@@ -66,14 +64,13 @@
         .c5-brand { font-family: 'Archivo Black', sans-serif; font-size: 15px; letter-spacing: 0.02em; }
         .c5-nav-links { display: flex; flex-wrap: wrap; gap: 8px 24px; font-weight: 700; font-size: 15px; }
         .c5-hero-art { margin-top: 8px; }
-        /* Crop the empty diamond pattern above the flags in the key art. */
+        /* Launcher card, recoloured ink-on-yellow and pre-scaled 3x (nearest-neighbour). */
         .c5-hero-art img {
             display: block;
             width: 100%;
+            max-width: 1050px;
             height: auto;
-            aspect-ratio: 1600 / 640;
-            object-fit: cover;
-            object-position: center bottom;
+            margin: 0 auto;
         }
 
         /* Tagline band */
@@ -272,7 +269,7 @@
             </div>
         </nav>
         <div class="c5-hero-art c5-wrap-wide">
-            <img class="c5-px" src="../assets/chess500/feature-1600x960.png" width="1600" height="960" alt="Chess 500 key art: two pixel-art armies with banners and spears facing off over a checkerboard">
+            <img class="c5-px" src="../assets/chess500/hero-card.png" width="1050" height="465" alt="Chess 500: two pixel-art armies with banners marching toward a checkerboard">
         </div>
     </header>
 
