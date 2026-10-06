@@ -239,6 +239,67 @@
         .c5-screens h2 { margin-bottom: 32px; font-size: 36px; text-align: center; }
         .c5-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
         .c5-shots img { display: block; width: 100%; height: auto; border: 3px solid var(--c5-ink); border-radius: 6px; background: #B1AFA8; }
+        .c5-shot { display: block; border-radius: 6px; cursor: zoom-in; transition: transform 0.12s ease, box-shadow 0.12s ease; }
+        .c5-shot:hover, .c5-shot:focus-visible { transform: translateY(-3px); box-shadow: 6px 6px 0 var(--c5-ink); }
+        .c5-shot:focus-visible { outline: 3px solid var(--c5-parchment); outline-offset: 3px; }
+
+        /* Screenshot lightbox */
+        .c5-lightbox {
+            margin: auto; /* styles.css resets margin on *, which un-centres the modal */
+            border: 0;
+            padding: 28px 24px 16px;
+            background: transparent;
+            max-width: 100vw;
+            max-height: 100vh;
+            overflow: visible;
+        }
+        .c5-lightbox::backdrop { background: rgba(26, 18, 6, 0.88); }
+        .c5-lb-layout { display: flex; align-items: center; gap: 16px; }
+        .c5-lb-figure { margin: 0; position: relative; }
+        .c5-lb-frame { background: var(--c5-yellow); padding: 16px; border-radius: 16px; }
+        .c5-lb-frame img {
+            display: block;
+            width: min(1200px, 76vw, calc((100vh - 170px) * 5 / 3));
+            height: auto;
+            border: 4px solid var(--c5-ink);
+            border-radius: 6px;
+            background: #B1AFA8;
+        }
+        .c5-lb-caption {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 12px;
+            color: var(--c5-parchment);
+            font-size: 15px;
+        }
+        .c5-lb-count { font-family: 'Archivo Black', sans-serif; color: var(--c5-yellow); white-space: nowrap; }
+        .c5-lb-btn {
+            flex: 0 0 auto;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--c5-yellow);
+            background: var(--c5-ink);
+            color: var(--c5-yellow);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .c5-lb-btn:hover { background: var(--c5-yellow); color: var(--c5-ink); }
+        .c5-lb-btn:focus-visible { outline: 3px solid var(--c5-parchment); outline-offset: 2px; }
+        .c5-lb-btn svg { width: 22px; height: 22px; }
+        .c5-lb-close { position: absolute; top: -18px; right: -18px; z-index: 1; }
+        .c5-lb-nav-mobile { display: none; }
+        @media (max-width: 700px) {
+            .c5-lb-layout > .c5-lb-btn { display: none; }
+            .c5-lb-nav-mobile { display: flex; justify-content: center; gap: 24px; margin-top: 16px; }
+            .c5-lb-frame { padding: 10px; }
+            .c5-lb-frame img { width: min(84vw, calc((100vh - 230px) * 5 / 3)); }
+            .c5-lb-close { top: -16px; right: -10px; }
+        }
 
         /* Final CTA + footer */
         .c5-final { padding: 96px 24px; text-align: center; background: var(--c5-parchment); }
@@ -378,11 +439,11 @@
         <div class="c5-wrap-wide">
             <h2 class="c5-display">On the Playdate</h2>
             <div class="c5-shots">
-                <img class="c5-px" src="../assets/chess500/01-title.png" width="400" height="240" loading="lazy" alt="Chess 500 title screen with 1 player and 2 player options">
-                <img class="c5-px" src="../assets/chess500/02-new-game.png" width="400" height="240" loading="lazy" alt="New game setup">
-                <img class="c5-px" src="../assets/chess500/03-pick-a-move.png" width="400" height="240" loading="lazy" alt="Picking a move on the board">
-                <img class="c5-px" src="../assets/chess500/04-battle.png" width="400" height="240" loading="lazy" alt="A capture battle in progress">
-                <img class="c5-px" src="../assets/chess500/05-check.png" width="400" height="240" loading="lazy" alt="A king in check">
+                <a class="c5-shot" href="../assets/chess500/01-title.png" aria-label="Enlarge: Chess 500 title screen with 1 player and 2 player options"><img class="c5-px" src="../assets/chess500/01-title.png" width="400" height="240" loading="lazy" alt="Chess 500 title screen with 1 player and 2 player options"></a>
+                <a class="c5-shot" href="../assets/chess500/02-new-game.png" aria-label="Enlarge: New game setup"><img class="c5-px" src="../assets/chess500/02-new-game.png" width="400" height="240" loading="lazy" alt="New game setup"></a>
+                <a class="c5-shot" href="../assets/chess500/03-pick-a-move.png" aria-label="Enlarge: Picking a move on the board"><img class="c5-px" src="../assets/chess500/03-pick-a-move.png" width="400" height="240" loading="lazy" alt="Picking a move on the board"></a>
+                <a class="c5-shot" href="../assets/chess500/04-battle.png" aria-label="Enlarge: A capture battle in progress"><img class="c5-px" src="../assets/chess500/04-battle.png" width="400" height="240" loading="lazy" alt="A capture battle in progress"></a>
+                <a class="c5-shot" href="../assets/chess500/05-check.png" aria-label="Enlarge: A king in check"><img class="c5-px" src="../assets/chess500/05-check.png" width="400" height="240" loading="lazy" alt="A king in check"></a>
             </div>
         </div>
     </section>
@@ -399,6 +460,22 @@
             <span>Playdate is a trademark of Panic Inc.</span>
         </div>
     </footer>
+
+    <dialog class="c5-lightbox" id="c5-lightbox" aria-label="Screenshot viewer">
+        <div class="c5-lb-layout">
+            <button type="button" class="c5-lb-btn" data-step="-1" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+            <figure class="c5-lb-figure">
+                <button type="button" class="c5-lb-btn c5-lb-close" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+                <div class="c5-lb-frame"><img class="c5-px" id="c5-lb-img" src="" alt="" width="400" height="240"></div>
+                <figcaption class="c5-lb-caption"><span id="c5-lb-text"></span><span class="c5-lb-count" id="c5-lb-count"></span></figcaption>
+                <div class="c5-lb-nav-mobile">
+                    <button type="button" class="c5-lb-btn" data-step="-1" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+                    <button type="button" class="c5-lb-btn" data-step="1" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+                </div>
+            </figure>
+            <button type="button" class="c5-lb-btn" data-step="1" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+        </div>
+    </dialog>
 
     <script>
         // Static position for the Game Review mockup (after 4...dxc6).
@@ -426,6 +503,43 @@
                 }
                 return s;
             }
+        })();
+
+        // Click a screenshot to view it larger.
+        (function () {
+            const shots = Array.from(document.querySelectorAll('.c5-shot'));
+            const dialog = document.getElementById('c5-lightbox');
+            if (!shots.length || !dialog || typeof dialog.showModal !== 'function') return;
+            const img = document.getElementById('c5-lb-img');
+            const text = document.getElementById('c5-lb-text');
+            const count = document.getElementById('c5-lb-count');
+            let index = 0;
+
+            function show(i) {
+                index = (i + shots.length) % shots.length;
+                const thumb = shots[index].querySelector('img');
+                img.src = shots[index].href;
+                img.alt = thumb.alt;
+                text.textContent = thumb.alt;
+                count.textContent = (index + 1) + ' / ' + shots.length;
+            }
+
+            shots.forEach((link, i) => link.addEventListener('click', (e) => {
+                e.preventDefault();
+                show(i);
+                dialog.showModal();
+            }));
+            dialog.querySelectorAll('[data-step]').forEach((btn) => {
+                btn.addEventListener('click', () => show(index + Number(btn.dataset.step)));
+            });
+            dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+            // A click on the dialog element itself (not its content) is a backdrop click.
+            dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+            dialog.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') { show(index - 1); e.preventDefault(); }
+                else if (e.key === 'ArrowRight') { show(index + 1); e.preventDefault(); }
+            });
+            dialog.addEventListener('close', () => shots[index].focus());
         })();
     </script>
 </body>
