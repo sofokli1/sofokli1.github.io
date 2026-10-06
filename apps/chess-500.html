@@ -157,6 +157,10 @@
         .c5-card svg { display: block; width: 32px; height: 32px; }
         .c5-card h3 { margin: 14px 0 8px; font-size: 22px; line-height: 1.15; }
         .c5-card p { font-size: 16px; }
+        .c5-grid-media { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 20px; }
+        @media (max-width: 720px) { .c5-grid-media { grid-template-columns: 1fr; } }
+        .c5-card-screen { background: var(--c5-ink); border-radius: 8px; padding: 8px; margin-bottom: 4px; }
+        .c5-card-screen img { display: block; width: 100%; height: auto; }
 
         /* Web review */
         .c5-review { background: var(--c5-ink); color: var(--c5-parchment); padding: 96px 24px; }
@@ -377,37 +381,41 @@
     </section>
 
     <section id="features" class="c5-features">
-        <div class="c5-grid c5-wrap">
+        <div class="c5-wrap">
+          <div class="c5-grid c5-grid-media">
             <div class="c5-card">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 17.5 3 6V3h3l11.5 11.5"/><path d="m13 19 6-6"/><path d="m16 16 4 4"/><path d="m19 21 2-2"/></svg>
+                <div class="c5-card-screen"><img class="c5-px" src="../assets/chess500/cpu-battle.gif" width="400" height="240" loading="lazy" alt="A capture plays out as a fight, then the CPU thinks up its reply"></div>
                 <h3 class="c5-display">Every capture, a battle</h3>
                 <p>Each piece fights with its own weapon, moves and voice lines.</p>
             </div>
             <div class="c5-card">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.85"/></svg>
+                <div class="c5-card-screen"><img class="c5-px" src="../assets/chess500/hotseat-flip.gif" width="400" height="240" loading="lazy" alt="Hotseat play: after White moves, the board flips for Black to move"></div>
                 <h3 class="c5-display">CPU or hotseat</h3>
                 <p>Take on the CPU at the difficulty you like, as White, Black or a coin flip. Or pass the Playdate to a friend and the board flips each turn.</p>
             </div>
             <div class="c5-card">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg>
+                <div class="c5-card-screen"><img class="c5-px" src="../assets/chess500/crank-review.gif" width="400" height="240" loading="lazy" alt="Turning the crank scrubs back through the moves of a game in progress"></div>
                 <h3 class="c5-display">The crank rewinds time</h3>
                 <p>Undock it mid-game to scrub back through every move, then crank forward and play on.</p>
             </div>
+            <div class="c5-card">
+                <div class="c5-card-screen"><img class="c5-px" src="../assets/chess500/qr-share.gif" width="400" height="240" loading="lazy" alt="Opening a finished game from Games History and replaying it with a QR share option"></div>
+                <h3 class="c5-display">Every game archived</h3>
+                <p>Finished games land in your history, ready to replay battle by battle.</p>
+            </div>
+          </div>
+          <div class="c5-grid">
             <div class="c5-card">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>
                 <h3 class="c5-display">Saves itself</h3>
                 <p>Put the Playdate down and your game is waiting when you come back.</p>
             </div>
             <div class="c5-card">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                <h3 class="c5-display">Every game archived</h3>
-                <p>Finished games land in your history, ready to replay battle by battle.</p>
-            </div>
-            <div class="c5-card">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 1 0 18"/></svg>
                 <h3 class="c5-display">Accessible</h3>
                 <p>Respects Reduce Flashing and Upside Down mode for left-handed play.</p>
             </div>
+          </div>
         </div>
     </section>
 
