@@ -553,6 +553,16 @@ body {
     color: var(--gray-light);
 }
 
+.footer-contact a {
+    color: var(--gray-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+    color: var(--white);
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;

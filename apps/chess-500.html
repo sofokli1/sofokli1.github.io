@@ -107,6 +107,16 @@
         .c5-btn.brown:active { box-shadow: 0 2px 0 var(--c5-ink); }
         .c5-btn:focus-visible { outline: 3px solid var(--c5-parchment); outline-offset: 3px; }
 
+        /* Official Playdate badge art (help.play.date/developer/playdate-link-badges): scaled, never edited. */
+        .c5-pd-badge { display: inline-block; border-radius: 12px; transition: transform 0.12s ease; }
+        .c5-pd-badge:hover { transform: translateY(-2px); }
+        .c5-pd-badge:active { transform: translateY(1px); }
+        .c5-pd-badge:focus-visible { outline: 3px solid var(--c5-parchment); outline-offset: 4px; }
+        .c5-final .c5-pd-badge:focus-visible { outline-color: var(--c5-ink); }
+        .c5-pd-badge img { display: block; width: 220px; height: auto; }
+        .c5-kicker .c5-pd-glyph { height: 18px; width: auto; vertical-align: -3px; margin-right: 8px; }
+        .c5-final .c5-final-meta { margin: 10px auto 0; font-size: 14px; color: var(--c5-bronze); }
+
         /* Battle section */
         .c5-section { padding: 96px 24px; }
         .c5-split { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; }
@@ -335,14 +345,14 @@
     <section class="c5-band">
         <div class="c5-band-inner c5-wrap">
             <div class="c5-band-copy">
-                <p class="c5-kicker">A PLAYDATE GAME</p>
+                <p class="c5-kicker"><img class="c5-pd-glyph" src="../assets/playdate/Playdate-platform-icon-color.svg" width="113" height="93" alt="">A PLAYDATE GAME</p>
                 <h1 class="c5-display">Chess where every capture is a fight.</h1>
                 <p>Complete chess with Amiga-style animated battles, character voices, and a crank that rewinds time.</p>
             </div>
             <div class="c5-cta-col">
                 <!-- Swap href for the Catalog listing URL once live. -->
-                <a href="#" class="c5-btn yellow">Coming soon to Catalog</a>
-                <span class="c5-cta-meta">For Playdate · 1–2 players · Crank optional</span>
+                <a href="#" class="c5-pd-badge"><img src="../assets/playdate/Playdate-badge-play-on.svg" width="329" height="98" alt="Play on Playdate"></a>
+                <span class="c5-cta-meta">Coming soon to Catalog · 1–2 players · Crank optional</span>
             </div>
         </div>
     </section>
@@ -450,7 +460,9 @@
     <section class="c5-final">
         <h2 class="c5-display">CHESS 500</h2>
         <p>All the rules, none of the mercy.</p>
-        <a href="#" class="c5-btn brown">Coming soon to Catalog</a>
+        <!-- Swap href for the Catalog listing URL once live. -->
+        <a href="#" class="c5-pd-badge"><img src="../assets/playdate/Playdate-badge-play-on.svg" width="329" height="98" alt="Play on Playdate"></a>
+        <p class="c5-final-meta">Coming soon to Catalog</p>
     </section>
     <footer class="c5-footer">
         <div class="c5-wrap-wide">
