@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess Game Review - Juxhin Bakalli Technologies</title>
+    <title>Chess 500 Game Review - Juxhin Bakalli Technologies</title>
+    <meta name="description" content="Replay a Chess 500 game move by move. Scan the QR code from your Playdate or paste PGN.">
+    <meta name="theme-color" content="#FFB100">
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
@@ -12,94 +14,155 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --c5-yellow: #FFB100;
+            --c5-yellow-deep: #F5A800;
+            --c5-ink: #1A1206;
+            --c5-bronze: #DB9440;
+            --c5-brown: #7A3E1D;
+            --c5-parchment: #FFF3D6;
+            --c5-paper: #FBF0D4;
+            --c5-muted: #6B5A3E;
+            --c5-error: #B3261E;
+            --c5-ok: #2E6B2F;
+            --c5-mono: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+        }
+        body {
+            font-family: 'Archivo', system-ui, sans-serif;
+            color: var(--c5-ink);
+            background: var(--c5-paper);
+        }
+        .c5-display { font-family: 'Archivo Black', 'Archivo', sans-serif; font-weight: 400; }
+
+        /* Header */
+        .cr-top {
+            padding: 18px 20px 28px;
+            background-color: var(--c5-yellow);
+            background-image: repeating-conic-gradient(var(--c5-yellow-deep) 0% 25%, transparent 0% 50%);
+            background-size: 40px 40px;
+        }
+        .cr-nav {
+            max-width: 1040px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 24px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .cr-nav a { color: var(--c5-ink); text-decoration: none; font-weight: 700; font-size: 15px; }
+        .cr-nav a:hover { color: var(--c5-brown); }
+        .cr-nav .cr-brand { font-family: 'Archivo Black', sans-serif; font-weight: 400; letter-spacing: 0.02em; }
+        .cr-nav-links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+        .cr-header { text-align: center; max-width: 1040px; margin: 8px auto 0; }
+        .cr-header img {
+            display: block;
+            width: 100%;
+            max-width: 560px;
+            height: auto;
+            margin: 0 auto;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+        .cr-header h1 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); line-height: 1.05; margin-top: 6px; }
+        .cr-header p { margin-top: 8px; font-size: 1.05rem; font-weight: 500; }
+        .cr-checker {
+            height: 24px;
+            background-color: var(--c5-parchment);
+            background-image: repeating-conic-gradient(var(--c5-ink) 0% 25%, transparent 0% 50%);
+            background-size: 24px 24px;
+        }
+
         .cr-main {
             max-width: 1040px;
             margin: 0 auto;
-            padding: 110px 20px 60px;
+            padding: 36px 20px 60px;
         }
-        .cr-header { text-align: center; margin-bottom: 32px; }
-        .cr-header h1 {
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
-            color: var(--dark);
-            margin-bottom: 8px;
+
+        /* Shared card look */
+        .cr-input-panel,
+        .cr-card {
+            background: var(--c5-parchment);
+            border: 3px solid var(--c5-ink);
+            border-radius: 14px;
+            box-shadow: 6px 6px 0 var(--c5-ink);
         }
-        .cr-header p { color: var(--gray); font-size: 1.05rem; }
 
         /* Input panel */
-        .cr-input-panel {
-            background: var(--white);
-            border: 1px solid var(--gray-light);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 28px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.05);
-        }
+        .cr-input-panel { padding: 20px; margin-bottom: 36px; }
         .cr-input-panel label {
             display: block;
-            font-weight: 600;
-            color: var(--gray-dark);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--c5-brown);
             margin-bottom: 8px;
         }
         .cr-input-panel textarea {
             width: 100%;
             min-height: 90px;
             resize: vertical;
-            border: 1px solid var(--gray-light);
+            border: 2px solid var(--c5-ink);
             border-radius: 10px;
             padding: 12px;
-            font-family: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+            font-family: var(--c5-mono);
             font-size: 0.92rem;
-            color: var(--dark);
+            color: var(--c5-ink);
+            background: #FFFBEF;
             box-sizing: border-box;
         }
         .cr-input-panel textarea:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0,122,255,0.12);
+            box-shadow: 0 0 0 4px var(--c5-yellow);
         }
         .cr-input-row {
             display: flex;
             gap: 12px;
             align-items: center;
-            margin-top: 12px;
+            margin-top: 14px;
             flex-wrap: wrap;
         }
         .cr-btn {
-            background: var(--primary-color);
-            color: #fff;
-            border: none;
+            background: var(--c5-ink);
+            color: var(--c5-yellow);
+            border: 2px solid var(--c5-ink);
             border-radius: 10px;
-            padding: 11px 22px;
+            padding: 10px 22px;
             font-size: 0.95rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             font-family: inherit;
-            transition: background 0.15s ease, transform 0.05s ease;
+            box-shadow: 0 4px 0 var(--c5-brown);
+            transition: transform 0.06s ease, box-shadow 0.06s ease;
             touch-action: manipulation;
         }
-        .cr-btn:hover { background: #0051D5; }
-        .cr-btn:active { transform: translateY(1px); }
+        .cr-btn:hover { background: #2E2210; }
+        .cr-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--c5-brown); }
+        .cr-btn:focus-visible { outline: 3px solid var(--c5-yellow); outline-offset: 2px; }
         .cr-btn.secondary {
-            background: var(--gray-lighter);
-            color: var(--gray-dark);
+            background: var(--c5-parchment);
+            color: var(--c5-ink);
+            box-shadow: 0 4px 0 var(--c5-ink);
         }
-        .cr-btn.secondary:hover { background: var(--gray-light); }
-        .cr-hint { color: var(--gray); font-size: 0.82rem; }
+        .cr-btn.secondary:hover { background: var(--c5-yellow); }
+        .cr-btn.secondary:active { box-shadow: 0 1px 0 var(--c5-ink); }
+        .cr-hint { color: var(--c5-muted); font-size: 0.82rem; }
         .cr-error {
-            color: var(--danger-color);
+            color: var(--c5-error);
             font-size: 0.9rem;
             margin-top: 10px;
             min-height: 1.1em;
-            font-weight: 500;
+            font-weight: 700;
         }
 
         /* Review layout */
         .cr-review {
             display: grid;
             grid-template-columns: minmax(0, 1fr) 300px;
-            gap: 28px;
+            gap: 32px;
             align-items: start;
         }
         @media (max-width: 820px) {
@@ -115,10 +178,12 @@
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             grid-template-rows: repeat(8, 1fr);
+            border: 4px solid var(--c5-ink);
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.16);
+            box-shadow: 8px 8px 0 var(--c5-brown);
             user-select: none;
+            box-sizing: border-box;
         }
         .cr-sq {
             position: relative;
@@ -128,13 +193,13 @@
             font-size: clamp(22px, 6.5vw, 46px);
             line-height: 1;
         }
-        .cr-sq.light { background: #EDEDED; }
-        .cr-sq.dark  { background: #6E7B8B; }
+        .cr-sq.light { background: var(--c5-parchment); }
+        .cr-sq.dark  { background: var(--c5-bronze); }
         .cr-sq.hl::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(255,193,7,0.45);
+            background: rgba(255, 177, 0, 0.55);
             pointer-events: none;
         }
         .cr-piece {
@@ -148,7 +213,7 @@
             position: absolute;
             font-size: 9px;
             font-weight: 700;
-            opacity: 0.55;
+            opacity: 0.8;
             z-index: 2;
         }
         .cr-coord.file { right: 3px; bottom: 1px; }
@@ -158,47 +223,45 @@
         .cr-controls {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-top: 16px;
+            gap: 10px;
+            margin-top: 22px;
             flex-wrap: wrap;
         }
         .cr-ctrl-btn {
-            background: var(--white);
-            border: 1px solid var(--gray-light);
+            background: var(--c5-parchment);
+            border: 2px solid var(--c5-ink);
             border-radius: 10px;
             min-width: 52px;
+            min-height: 44px;
             padding: 10px 14px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: var(--dark);
-            transition: background 0.12s ease;
+            color: var(--c5-ink);
+            box-shadow: 0 3px 0 var(--c5-ink);
+            transition: background 0.12s ease, transform 0.06s ease, box-shadow 0.06s ease;
             /* Taps only: stops double-tap-to-zoom when stepping moves quickly. */
             touch-action: manipulation;
         }
         .cr-ctrl-btn svg { display: block; width: 19px; height: 19px; }
-        .cr-ctrl-btn:hover { background: var(--gray-lighter); }
-        .cr-ctrl-btn:disabled { opacity: 0.4; cursor: default; }
+        .cr-ctrl-btn:hover { background: var(--c5-yellow); }
+        .cr-ctrl-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--c5-ink); }
+        .cr-ctrl-btn:focus-visible { outline: 3px solid var(--c5-yellow); outline-offset: 2px; }
+        .cr-ctrl-btn:disabled { opacity: 0.35; cursor: default; background: var(--c5-parchment); transform: none; box-shadow: 0 3px 0 var(--c5-ink); }
 
         /* Sidebar */
-        .cr-sidebar { display: flex; flex-direction: column; gap: 20px; }
-        .cr-card {
-            background: var(--white);
-            border: 1px solid var(--gray-light);
-            border-radius: 14px;
-            padding: 16px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.05);
-        }
+        .cr-sidebar { display: flex; flex-direction: column; gap: 22px; }
+        .cr-card { padding: 16px; }
         .cr-card h3 {
             font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--gray);
+            letter-spacing: 0.08em;
+            color: var(--c5-brown);
             margin-bottom: 12px;
         }
-        .cr-status { font-weight: 600; color: var(--dark); margin-bottom: 4px; }
-        .cr-substatus { color: var(--gray); font-size: 0.88rem; }
+        .cr-status { font-family: 'Archivo Black', sans-serif; font-size: 1.25rem; color: var(--c5-ink); margin-bottom: 2px; }
+        .cr-substatus { color: var(--c5-muted); font-size: 0.88rem; }
 
         .cr-moves {
             max-height: 340px;
@@ -208,53 +271,61 @@
             gap: 2px 4px;
             font-size: 0.92rem;
         }
-        .cr-moves .num { color: var(--gray); text-align: right; padding: 4px 6px 4px 0; }
+        .cr-moves .num { color: var(--c5-muted); text-align: right; padding: 4px 6px 4px 0; }
         .cr-move {
             padding: 4px 8px;
             border-radius: 6px;
             cursor: pointer;
-            font-family: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
-            color: var(--dark);
+            font-family: var(--c5-mono);
+            color: var(--c5-ink);
             touch-action: manipulation;
         }
-        .cr-move:hover { background: var(--gray-lighter); }
-        .cr-move.active { background: var(--primary-color); color: #fff; }
-        .cr-empty-moves { color: var(--gray); font-size: 0.9rem; }
+        .cr-move:hover { background: rgba(255, 177, 0, 0.45); }
+        .cr-move.active { background: var(--c5-ink); color: var(--c5-yellow); }
+        .cr-empty-moves { color: var(--c5-muted); font-size: 0.9rem; }
 
         .cr-share-row { display: flex; gap: 8px; }
         .cr-share-row input {
             flex: 1;
-            border: 1px solid var(--gray-light);
+            min-width: 0;
+            border: 2px solid var(--c5-ink);
             border-radius: 8px;
-            padding: 9px 10px;
+            padding: 8px 10px;
             font-size: 0.82rem;
-            color: var(--gray-dark);
-            background: var(--gray-lighter);
-            font-family: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+            color: var(--c5-ink);
+            background: #FFFBEF;
+            font-family: var(--c5-mono);
         }
-        .cr-copy-ok { color: var(--success-color); font-size: 0.8rem; margin-top: 8px; min-height: 1em; }
+        .cr-share-row .cr-btn { padding: 8px 14px; }
+        .cr-copy-ok { color: var(--c5-ok); font-weight: 700; font-size: 0.8rem; margin-top: 8px; min-height: 1em; }
 
-        .cr-foot-note { text-align: center; color: var(--gray); font-size: 0.85rem; margin-top: 36px; }
+        .cr-foot-note { text-align: center; color: var(--c5-muted); font-size: 0.85rem; margin-top: 44px; }
+        .cr-foot-note code { font-family: var(--c5-mono); background: var(--c5-parchment); border: 1px solid #E3D0A4; border-radius: 4px; padding: 1px 5px; }
+        .cr-foot-note a { color: var(--c5-brown); font-weight: 700; }
+
+        .cr-footer { background: var(--c5-ink); color: #CDB98F; padding: 24px 20px; font-size: 14px; }
+        .cr-footer div { max-width: 1040px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+        .cr-footer a { color: var(--c5-parchment); }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a href="../index.html" class="nav-brand">Juxhin Bakalli Technologies</a>
-            <div class="nav-spacer"></div>
-            <ul class="nav-menu">
-                <li><a href="../index.html#apps">Apps</a></li>
-                <li><a href="../index.html">Home</a></li>
-            </ul>
+    <header class="cr-top">
+        <nav class="cr-nav" aria-label="Main">
+            <a href="../index.html" class="cr-brand">JUXHIN BAKALLI TECHNOLOGIES</a>
+            <div class="cr-nav-links">
+                <a href="chess-500.html">← Chess 500</a>
+                <a href="../index.html#apps">Apps</a>
+            </div>
+        </nav>
+        <div class="cr-header">
+            <img src="../assets/chess500/header-1200x400.png" width="1200" height="400" alt="Chess 500">
+            <h1 class="c5-display">Game Review</h1>
+            <p>Replay a game move by move. Scan the QR code from Chess&nbsp;500, or paste notation below.</p>
         </div>
-    </nav>
+    </header>
+    <div class="cr-checker" aria-hidden="true"></div>
 
     <main class="cr-main">
-        <div class="cr-header">
-            <h1>♞ Chess Game Review</h1>
-            <p>Replay a game move by move. Paste notation below, or scan the QR code from Chess&nbsp;500.</p>
-        </div>
-
         <div class="cr-input-panel">
             <label for="cr-notation">Game notation</label>
             <textarea id="cr-notation" placeholder="Paste PGN (1. e4 e5 2. Nf3 ...) or coordinate moves (e2e4 e7e5 g1f3 ...)"></textarea>
@@ -305,7 +376,7 @@
                 <div class="cr-card">
                     <h3>Share this game</h3>
                     <div class="cr-share-row">
-                        <input type="text" id="cr-share-url" readonly value="">
+                        <input type="text" id="cr-share-url" readonly value="" aria-label="Share link">
                         <button class="cr-btn" id="cr-copy">Copy</button>
                     </div>
                     <div class="cr-copy-ok" id="cr-copy-ok"></div>
@@ -313,8 +384,15 @@
             </div>
         </div>
 
-        <p class="cr-foot-note">Tip: append <code>?moves=e2e4,e7e5,g1f3</code> or <code>?pgn=...</code> to the URL to link straight to a game.</p>
+        <p class="cr-foot-note">Tip: append <code>?moves=e2e4,e7e5,g1f3</code> or <code>?pgn=...</code> to the URL to link straight to a game. Don't have Chess 500 yet? <a href="chess-500.html">Meet the game</a>.</p>
     </main>
+
+    <footer class="cr-footer">
+        <div>
+            <span>&copy; 2026 Juxhin Bakalli Technologies</span>
+            <span>Chess pieces: Staunty set from lichess</span>
+        </div>
+    </footer>
 
     <script type="module">
         import { Chess } from 'https://cdn.jsdelivr.net/npm/chess.js@1.0.0/dist/esm/chess.js';
@@ -488,14 +566,14 @@
                         const c = document.createElement('span');
                         c.className = 'cr-coord rank';
                         c.textContent = rankNum;
-                        c.style.color = isDark ? '#EDEDED' : '#6E7B8B';
+                        c.style.color = isDark ? '#FFF3D6' : '#7A3E1D';
                         sq.appendChild(c);
                     }
                     if (rr === 7) {
                         const c = document.createElement('span');
                         c.className = 'cr-coord file';
                         c.textContent = fileChar;
-                        c.style.color = isDark ? '#EDEDED' : '#6E7B8B';
+                        c.style.color = isDark ? '#FFF3D6' : '#7A3E1D';
                         sq.appendChild(c);
                     }
                     boardEl.appendChild(sq);
