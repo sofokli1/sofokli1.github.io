@@ -195,16 +195,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: clamp(14px, 2.6vw, 26px);
-            line-height: 1;
-            font-family: 'Apple Symbols', 'Segoe UI Symbol', 'DejaVu Sans', serif;
-            font-variant-emoji: text;
+            min-width: 0;
+            aspect-ratio: 1 / 1;
         }
+        /* Percent of the square, so pieces scale with the board at every width. */
+        .c5-mini-board svg { display: block; width: 88%; height: 88%; }
         .c5-mini-board .l { background: var(--c5-parchment); }
         .c5-mini-board .d { background: var(--c5-bronze); }
         .c5-mini-board .hl { box-shadow: inset 0 0 0 100px rgba(255, 177, 0, 0.55); }
-        .c5-mini-board .w { color: #fff; text-shadow: 0 0 1px #3c3c3c, 0 0 1px #3c3c3c, 0 0 1px #3c3c3c; }
-        .c5-mini-board .b { color: #2c2622; }
         .c5-mini-moves {
             flex: 0 0 34%;
             border: 2px solid var(--c5-ink);
@@ -477,11 +475,12 @@
         </div>
     </dialog>
 
-    <script>
+    <script type="module">
+        import { PIECES } from '../js/chess-pieces.js';
+
         // Static position for the Game Review mockup (after 4...dxc6).
         (function () {
             const fen = 'r1bqkbnr/1pp2ppp/p1p5/4p3/4P3/5N2/PPPP1PPP/RNBQK2R';
-            const glyph = { k: '♚', q: '♛', r: '♜', b: '♝', n: '♞', p: '♟' };
             const highlight = { '2,2': true, '1,3': true }; // c6 and d7 (last move)
             const board = document.getElementById('c5-mini-board');
             fen.split('/').forEach((row, r) => {
@@ -497,10 +496,7 @@
             function cell(r, f, ch) {
                 const s = document.createElement('span');
                 s.className = ((r + f) % 2 ? 'd' : 'l') + (highlight[r + ',' + f] ? ' hl' : '');
-                if (ch) {
-                    s.textContent = glyph[ch.toLowerCase()];
-                    s.classList.add(ch === ch.toUpperCase() ? 'w' : 'b');
-                }
+                if (ch) s.innerHTML = PIECES[ch === ch.toUpperCase() ? 'w' : 'b'][ch.toLowerCase()];
                 return s;
             }
         })();
