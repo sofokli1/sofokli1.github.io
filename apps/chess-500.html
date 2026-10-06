@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess 500 for Playdate - Juxhin Bakalli Technologies</title>
+    <meta name="description" content="Chess where every capture is a fight. Complete chess for Playdate with animated battles inspired by Battle Chess on the Amiga 500, character voices, and a crank that rewinds time.">
+    <meta property="og:title" content="Chess 500 for Playdate">
+    <meta property="og:description" content="Chess where every capture is a fight. Animated battles, character voices, and a crank that rewinds time.">
+    <meta property="og:image" content="https://www.juxhinbakalli.com/assets/chess500/feature-1600x960.png">
+    <meta name="theme-color" content="#FFB100">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../assets/img/favicons/site.webmanifest">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --c5-yellow: #FFB100;
+            --c5-yellow-deep: #F5A800;
+            --c5-ink: #1A1206;
+            --c5-bronze: #DB9440;
+            --c5-brown: #7A3E1D;
+            --c5-parchment: #FFF3D6;
+            --c5-parchment-dim: #F2E3C0;
+            --c5-muted: #CDB98F;
+        }
+        body {
+            font-family: 'Archivo', system-ui, sans-serif;
+            color: var(--c5-ink);
+            background: var(--c5-yellow);
+            line-height: 1.55;
+        }
+        .c5-display { font-family: 'Archivo Black', 'Archivo', sans-serif; font-weight: 400; }
+        .c5-px { image-rendering: pixelated; image-rendering: crisp-edges; }
+        .c5-wrap { max-width: 1100px; margin: 0 auto; }
+        .c5-wrap-wide { max-width: 1200px; margin: 0 auto; }
+        .c5-checker {
+            height: 48px;
+            background-color: var(--c5-parchment);
+            background-image: repeating-conic-gradient(var(--c5-ink) 0% 25%, transparent 0% 50%);
+            background-size: 48px 48px;
+        }
+        .c5-checker.sm { height: 24px; background-size: 24px 24px; }
+
+        /* Header + hero */
+        .c5-header {
+            padding: 20px 24px 0;
+            background-color: var(--c5-yellow);
+            background-image: repeating-conic-gradient(var(--c5-yellow-deep) 0% 25%, transparent 0% 50%);
+            background-size: 40px 40px;
+        }
+        .c5-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .c5-nav a { color: var(--c5-ink); text-decoration: none; }
+        .c5-nav a:hover { color: var(--c5-brown); }
+        .c5-brand { font-family: 'Archivo Black', sans-serif; font-size: 15px; letter-spacing: 0.02em; }
+        .c5-nav-links { display: flex; flex-wrap: wrap; gap: 8px 24px; font-weight: 700; font-size: 15px; }
+        .c5-hero-art { margin-top: 8px; }
+        /* Crop the empty diamond pattern above the flags in the key art. */
+        .c5-hero-art img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1600 / 640;
+            object-fit: cover;
+            object-position: center bottom;
+        }
+
+        /* Tagline band */
+        .c5-band { background: var(--c5-ink); color: var(--c5-parchment); padding: 64px 24px; }
+        .c5-band-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .c5-band-copy { flex: 1 1 520px; min-width: 0; }
+        .c5-kicker { margin: 0 0 12px; font-weight: 700; color: var(--c5-bronze); letter-spacing: 0.12em; font-size: 14px; }
+        .c5-band h1 { font-size: clamp(36px, 5vw, 60px); line-height: 1.02; }
+        .c5-band-copy p { margin-top: 20px; font-size: 19px; max-width: 560px; color: var(--c5-parchment-dim); }
+        .c5-cta-col { display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center; }
+        .c5-cta-meta { font-size: 14px; color: var(--c5-muted); }
+
+        .c5-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 18px;
+            padding: 18px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.08s ease, box-shadow 0.08s ease;
+        }
+        .c5-btn:active { transform: translateY(4px); }
+        .c5-btn.yellow { background: var(--c5-yellow); color: var(--c5-ink); box-shadow: 0 6px 0 var(--c5-brown); }
+        .c5-btn.yellow:active { box-shadow: 0 2px 0 var(--c5-brown); }
+        .c5-btn.brown { background: var(--c5-brown); color: var(--c5-parchment); box-shadow: 0 6px 0 var(--c5-ink); }
+        .c5-btn.brown:active { box-shadow: 0 2px 0 var(--c5-ink); }
+        .c5-btn:focus-visible { outline: 3px solid var(--c5-parchment); outline-offset: 3px; }
+
+        /* Battle section */
+        .c5-section { padding: 96px 24px; }
+        .c5-split { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; }
+        .c5-split > * { flex: 1 1 400px; min-width: 0; }
+        .c5-frame-col { display: flex; justify-content: center; }
+        .c5-frame {
+            width: 100%;
+            max-width: 480px;
+            box-sizing: border-box;
+            padding: 28px;
+            background: #FFC933;
+            border-radius: 20px;
+            box-shadow: 0 24px 48px rgba(26, 18, 6, 0.25);
+        }
+        .c5-frame-inner { background: var(--c5-ink); border-radius: 10px; padding: 14px; }
+        .c5-frame-inner img { display: block; width: 100%; height: auto; border-radius: 2px; }
+        .c5-h2 { font-size: clamp(30px, 4vw, 44px); line-height: 1.05; }
+        .c5-split p { margin-top: 18px; font-size: 18px; }
+        .c5-split p.c5-inspired {
+            margin-top: 24px;
+            padding: 14px 18px;
+            font-size: 16px;
+            background: var(--c5-parchment);
+            border: 2px solid var(--c5-ink);
+            border-radius: 10px;
+        }
+
+        /* Features */
+        .c5-features { padding: 0 24px 96px; }
+        .c5-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .c5-card {
+            background: var(--c5-parchment);
+            border: 3px solid var(--c5-ink);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: 6px 6px 0 var(--c5-ink);
+        }
+        .c5-card svg { display: block; width: 32px; height: 32px; }
+        .c5-card h3 { margin: 14px 0 8px; font-size: 22px; line-height: 1.15; }
+        .c5-card p { font-size: 16px; }
+
+        /* Web review */
+        .c5-review { background: var(--c5-ink); color: var(--c5-parchment); padding: 96px 24px; }
+        .c5-review .c5-kicker { color: var(--c5-yellow); }
+        .c5-browser {
+            background: var(--c5-parchment);
+            border: 3px solid var(--c5-parchment);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 10px 10px 0 var(--c5-brown);
+        }
+        .c5-browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: var(--c5-yellow);
+            border-bottom: 3px solid var(--c5-ink);
+        }
+        .c5-browser-bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--c5-ink); opacity: 0.85; }
+        .c5-browser-url {
+            flex: 1;
+            margin-left: 8px;
+            min-width: 0;
+            background: var(--c5-parchment);
+            color: var(--c5-ink);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font: 500 12px 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .c5-browser-body { display: flex; gap: 16px; padding: 18px; align-items: flex-start; color: var(--c5-ink); }
+        .c5-mini-board {
+            flex: 1 1 auto;
+            min-width: 0;
+            aspect-ratio: 1 / 1;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            border: 3px solid var(--c5-ink);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .c5-mini-board span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(14px, 2.6vw, 26px);
+            line-height: 1;
+            font-family: 'Apple Symbols', 'Segoe UI Symbol', 'DejaVu Sans', serif;
+            font-variant-emoji: text;
+        }
+        .c5-mini-board .l { background: var(--c5-parchment); }
+        .c5-mini-board .d { background: var(--c5-bronze); }
+        .c5-mini-board .hl { box-shadow: inset 0 0 0 100px rgba(255, 177, 0, 0.55); }
+        .c5-mini-board .w { color: #fff; text-shadow: 0 0 1px #3c3c3c, 0 0 1px #3c3c3c, 0 0 1px #3c3c3c; }
+        .c5-mini-board .b { color: #2c2622; }
+        .c5-mini-moves {
+            flex: 0 0 34%;
+            border: 2px solid var(--c5-ink);
+            border-radius: 8px;
+            padding: 10px;
+            font: 500 13px 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+            display: grid;
+            grid-template-columns: auto 1fr 1fr;
+            gap: 4px 6px;
+            align-content: start;
+        }
+        .c5-mini-moves b { font-weight: 500; opacity: 0.55; }
+        .c5-mini-moves .on { background: var(--c5-ink); color: var(--c5-yellow); border-radius: 4px; padding: 0 4px; }
+        .c5-steps { list-style: none; margin: 28px 0 32px; display: flex; flex-direction: column; gap: 18px; }
+        .c5-steps li { display: flex; gap: 16px; align-items: flex-start; font-size: 17px; color: var(--c5-parchment-dim); }
+        .c5-steps strong { display: block; color: var(--c5-parchment); font-size: 18px; }
+        .c5-step-num {
+            flex: 0 0 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--c5-yellow);
+            color: var(--c5-ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 18px;
+        }
+
+        /* Screens */
+        .c5-screens { background: var(--c5-yellow); padding: 96px 24px; }
+        .c5-screens h2 { margin-bottom: 32px; font-size: 36px; text-align: center; }
+        .c5-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .c5-shots img { display: block; width: 100%; height: auto; border: 3px solid var(--c5-ink); border-radius: 6px; background: #B1AFA8; }
+
+        /* Final CTA + footer */
+        .c5-final { padding: 96px 24px; text-align: center; background: var(--c5-parchment); }
+        .c5-final h2 { font-size: clamp(34px, 5vw, 56px); }
+        .c5-final p { margin: 12px auto 28px; font-size: 18px; max-width: 520px; }
+        .c5-footer { background: var(--c5-ink); color: var(--c5-muted); padding: 28px 24px; font-size: 14px; }
+        .c5-footer .c5-wrap-wide { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+        .c5-footer a { color: var(--c5-parchment); }
+
+        @media (max-width: 600px) {
+            .c5-section, .c5-review, .c5-screens, .c5-final { padding-top: 64px; padding-bottom: 64px; }
+            .c5-band { padding: 48px 20px; }
+            .c5-frame { padding: 16px; border-radius: 16px; }
+            .c5-browser-body { flex-direction: column; }
+            .c5-mini-board { width: 100%; }
+            .c5-mini-moves { width: 100%; box-sizing: border-box; }
+        }
+    </style>
+</head>
+<body>
+    <header class="c5-header">
+        <nav class="c5-nav c5-wrap-wide" aria-label="Main">
+            <a href="../index.html" class="c5-brand">JUXHIN BAKALLI TECHNOLOGIES</a>
+            <div class="c5-nav-links">
+                <a href="#features">Features</a>
+                <a href="#review">Game Review</a>
+                <a href="../index.html#apps">Apps</a>
+            </div>
+        </nav>
+        <div class="c5-hero-art c5-wrap-wide">
+            <img class="c5-px" src="../assets/chess500/feature-1600x960.png" width="1600" height="960" alt="Chess 500 key art: two pixel-art armies with banners and spears facing off over a checkerboard">
+        </div>
+    </header>
+
+    <section class="c5-band">
+        <div class="c5-band-inner c5-wrap">
+            <div class="c5-band-copy">
+                <p class="c5-kicker">A PLAYDATE GAME</p>
+                <h1 class="c5-display">Chess where every capture is a fight.</h1>
+                <p>Complete chess with Amiga-style animated battles, character voices, and a crank that rewinds time.</p>
+            </div>
+            <div class="c5-cta-col">
+                <!-- Swap href for the Catalog listing URL once live. -->
+                <a href="#" class="c5-btn yellow">Coming soon to Catalog</a>
+                <span class="c5-cta-meta">For Playdate · 1–2 players · Crank optional</span>
+            </div>
+        </div>
+    </section>
+    <div class="c5-checker" aria-hidden="true"></div>
+
+    <section class="c5-section">
+        <div class="c5-split c5-wrap">
+            <div class="c5-frame-col">
+                <div class="c5-frame">
+                    <div class="c5-frame-inner">
+                        <img class="c5-px" src="../assets/chess500/battle.gif" width="400" height="240" alt="Animated capture: two pieces fight it out on the board">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="c5-display c5-h2">Land on a piece. Watch it go down swinging.</h2>
+                <p>Underneath, it's a complete, honest game of chess. But move onto an occupied square and the board clears for an animated duel: spearmen clash, knights charge, and the king himself steps up when he has to.</p>
+                <p>Every piece marches, fights and talks with a personality of its own.</p>
+                <p class="c5-inspired"><strong>Inspired by Battle Chess</strong>, Interplay's 1988 classic that turned every capture into a brawl on the <strong>Amiga 500</strong>. The name is a nod to that machine.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="c5-features">
+        <div class="c5-grid c5-wrap">
+            <div class="c5-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 17.5 3 6V3h3l11.5 11.5"/><path d="m13 19 6-6"/><path d="m16 16 4 4"/><path d="m19 21 2-2"/></svg>
+                <h3 class="c5-display">Every capture, a battle</h3>
+                <p>Each piece fights with its own weapon, moves and voice lines.</p>
+            </div>
+            <div class="c5-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.85"/></svg>
+                <h3 class="c5-display">CPU or hotseat</h3>
+                <p>Take on the CPU at the difficulty you like, as White, Black or a coin flip. Or pass the Playdate to a friend and the board flips each turn.</p>
+            </div>
+            <div class="c5-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg>
+                <h3 class="c5-display">The crank rewinds time</h3>
+                <p>Undock it mid-game to scrub back through every move, then crank forward and play on.</p>
+            </div>
+            <div class="c5-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8"/><path d="M7 3v5h8"/></svg>
+                <h3 class="c5-display">Saves itself</h3>
+                <p>Put the Playdate down and your game is waiting when you come back.</p>
+            </div>
+            <div class="c5-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                <h3 class="c5-display">Every game archived</h3>
+                <p>Finished games land in your history, ready to replay battle by battle.</p>
+            </div>
+            <div class="c5-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#7A3E1D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 1 0 18"/></svg>
+                <h3 class="c5-display">Accessible</h3>
+                <p>Respects Reduce Flashing and Upside Down mode for left-handed play.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="review" class="c5-review">
+        <div class="c5-split c5-wrap">
+            <div>
+                <div class="c5-browser" aria-hidden="true">
+                    <div class="c5-browser-bar">
+                        <i></i><i></i><i></i>
+                        <span class="c5-browser-url">juxhinbakalli.com/apps/chess-review.html</span>
+                    </div>
+                    <div class="c5-browser-body">
+                        <div class="c5-mini-board" id="c5-mini-board"></div>
+                        <div class="c5-mini-moves">
+                            <b>1.</b><span>e4</span><span>e5</span>
+                            <b>2.</b><span>Nf3</span><span>Nc6</span>
+                            <b>3.</b><span>Bb5</span><span>a6</span>
+                            <b>4.</b><span>Bxc6</span><span class="on">dxc6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <p class="c5-kicker">GAME REVIEW</p>
+                <h2 class="c5-display c5-h2">Take your games off the Playdate.</h2>
+                <ol class="c5-steps">
+                    <li><span class="c5-step-num">1</span><span><strong>Finish a game</strong>Win, lose or draw, it's saved to your history.</span></li>
+                    <li><span class="c5-step-num">2</span><span><strong>Show its QR code</strong>Open the game from your history and bring up the replay code.</span></li>
+                    <li><span class="c5-step-num">3</span><span><strong>Scan and replay</strong>Step through every move on your phone or computer, flip the board, and share a link with whoever you just beat.</span></li>
+                </ol>
+                <a href="chess-review.html" class="c5-btn yellow">Open Game Review →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="screens" class="c5-screens">
+        <div class="c5-wrap-wide">
+            <h2 class="c5-display">On the Playdate</h2>
+            <div class="c5-shots">
+                <img class="c5-px" src="../assets/chess500/01-title.png" width="400" height="240" loading="lazy" alt="Chess 500 title screen with 1 player and 2 player options">
+                <img class="c5-px" src="../assets/chess500/02-new-game.png" width="400" height="240" loading="lazy" alt="New game setup">
+                <img class="c5-px" src="../assets/chess500/03-pick-a-move.png" width="400" height="240" loading="lazy" alt="Picking a move on the board">
+                <img class="c5-px" src="../assets/chess500/04-battle.png" width="400" height="240" loading="lazy" alt="A capture battle in progress">
+                <img class="c5-px" src="../assets/chess500/05-check.png" width="400" height="240" loading="lazy" alt="A king in check">
+            </div>
+        </div>
+    </section>
+
+    <div class="c5-checker sm" aria-hidden="true"></div>
+    <section class="c5-final">
+        <h2 class="c5-display">CHESS 500</h2>
+        <p>All the rules, none of the mercy.</p>
+        <a href="#" class="c5-btn brown">Coming soon to Catalog</a>
+    </section>
+    <footer class="c5-footer">
+        <div class="c5-wrap-wide">
+            <span>&copy; 2026 Juxhin Bakalli Technologies · <a href="mailto:contact@juxhinbakalli.com">contact@juxhinbakalli.com</a></span>
+            <span>Playdate is a trademark of Panic Inc.</span>
+        </div>
+    </footer>
+
+    <script>
+        // Static position for the Game Review mockup (after 4...dxc6).
+        (function () {
+            const fen = 'r1bqkbnr/1pp2ppp/p1p5/4p3/4P3/5N2/PPPP1PPP/RNBQK2R';
+            const glyph = { k: '♚', q: '♛', r: '♜', b: '♝', n: '♞', p: '♟' };
+            const highlight = { '2,2': true, '1,3': true }; // c6 and d7 (last move)
+            const board = document.getElementById('c5-mini-board');
+            fen.split('/').forEach((row, r) => {
+                let f = 0;
+                for (const ch of row) {
+                    if (/\d/.test(ch)) {
+                        for (let i = 0; i < Number(ch); i++) board.appendChild(cell(r, f++, null));
+                    } else {
+                        board.appendChild(cell(r, f++, ch));
+                    }
+                }
+            });
+            function cell(r, f, ch) {
+                const s = document.createElement('span');
+                s.className = ((r + f) % 2 ? 'd' : 'l') + (highlight[r + ',' + f] ? ' hl' : '');
+                if (ch) {
+                    s.textContent = glyph[ch.toLowerCase()];
+                    s.classList.add(ch === ch.toUpperCase() ? 'w' : 'b');
+                }
+                return s;
+            }
+        })();
+    </script>
+</body>
+</html>
