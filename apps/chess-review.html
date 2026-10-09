@@ -466,6 +466,17 @@
             return out.length ? out.join(' ') : null;
         }
 
+        // Inverse of decodeCompactMoves, so shared links match the game's QR.
+        function encodeCompactMoves(moves) {
+            const B36 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const PROMO = { n: 1, b: 2, r: 3, q: 4 };
+            const idx = s => (s.charCodeAt(1) - 49) * 8 + (s.charCodeAt(0) - 97);
+            return moves.map(m => {
+                const v = (idx(m.from) * 64 + idx(m.to)) * 5 + (PROMO[m.promotion] || 0);
+                return B36[(v / 1296) | 0] + B36[((v / 36) | 0) % 36] + B36[v % 36];
+            }).join('');
+        }
+
         // Returns { verbose } or throws with a friendly message.
         function buildGame(text) {
             const game = new Chess();
@@ -741,10 +752,13 @@
             return cell;
         }
 
+        // Share via the short domain; Cloudflare redirects chess500.com/R?G=…
+        // to this page with the query string intact.
+        const SHARE_BASE = 'https://chess500.com/R';
         function updateShareUrl() {
-            const url = new URL(window.location.href);
-            url.search = uciMoves.length ? '?moves=' + uciMoves.join(',') : '';
-            el('cr-share-url').value = url.toString();
+            el('cr-share-url').value = verbose.length
+                ? SHARE_BASE + '?G=' + encodeCompactMoves(verbose)
+                : '';
         }
 
         // ---- Navigation ----------------------------------------------------
