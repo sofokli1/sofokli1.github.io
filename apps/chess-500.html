@@ -172,6 +172,9 @@
             overflow: hidden;
             box-shadow: 10px 10px 0 var(--c5-brown);
         }
+        .c5-browser-link { display: block; color: inherit; text-decoration: none; transition: transform 0.12s ease, box-shadow 0.12s ease; }
+        .c5-browser-link:hover, .c5-browser-link:focus-visible { transform: translate(-3px, -3px); box-shadow: 13px 13px 0 var(--c5-brown); }
+        .c5-browser-link:focus-visible { outline: 3px solid var(--c5-yellow); outline-offset: 4px; }
         .c5-browser-bar {
             display: flex;
             align-items: center;
@@ -422,12 +425,12 @@
     <section id="review" class="c5-review">
         <div class="c5-split c5-wrap">
             <div>
-                <div class="c5-browser" aria-hidden="true">
-                    <div class="c5-browser-bar">
+                <a class="c5-browser c5-browser-link" href="chess-review.html?moves=e2e4,e7e5,g1f3,b8c6,f1b5,a7a6,b5c6,d7c6" aria-label="Open Game Review with this sample game">
+                    <div class="c5-browser-bar" aria-hidden="true">
                         <i></i><i></i><i></i>
                         <span class="c5-browser-url">juxhinbakalli.com/apps/chess-review.html</span>
                     </div>
-                    <div class="c5-browser-body">
+                    <div class="c5-browser-body" aria-hidden="true">
                         <div class="c5-mini-board" id="c5-mini-board"></div>
                         <div class="c5-mini-moves">
                             <b>1.</b><span>e4</span><span>e5</span>
@@ -436,7 +439,7 @@
                             <b>4.</b><span>Bxc6</span><span class="on">dxc6</span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div>
                 <p class="c5-kicker">GAME REVIEW</p>

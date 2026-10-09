@@ -209,6 +209,13 @@
             height: 90%;
         }
         .cr-piece svg { display: block; width: 100%; height: 100%; }
+        .cr-sq.moving { z-index: 3; }
+        .cr-burst {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255, 243, 214, 0.95) 0%, rgba(255, 177, 0, 0.7) 40%, rgba(255, 177, 0, 0) 70%);
+            pointer-events: none;
+        }
         .cr-coord {
             position: absolute;
             font-size: 9px;
@@ -413,6 +420,9 @@
         let ply = 0;           // 0 .. verbose.length
         let flipped = false;
         let uciMoves = [];     // long-algebraic strings for the share URL
+        let shownPly = 0;      // ply currently drawn, to animate single steps
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         function setError(msg) { el('cr-error').textContent = msg || ''; }
 
@@ -508,6 +518,7 @@
             });
 
             ply = verbose.length; // jump to final position
+            shownPly = ply;       // a fresh game appears without animation
             renderMoves();
             updateShareUrl();
             render();
@@ -523,6 +534,8 @@
         function render() {
             const board = positions[ply] || new Chess().board();
             const last = ply > 0 ? verbose[ply - 1] : null;
+            const prevPly = shownPly;
+            shownPly = ply;
             boardEl.innerHTML = '';
 
             for (let rr = 0; rr < 8; rr++) {
@@ -538,6 +551,7 @@
                     const sq = document.createElement('div');
                     const isDark = (rowIdx + colIdx) % 2 === 1;
                     sq.className = 'cr-sq ' + (isDark ? 'dark' : 'light');
+                    sq.dataset.square = square;
                     if (last && (square === last.from || square === last.to)) sq.classList.add('hl');
 
                     if (cell) {
@@ -563,6 +577,12 @@
                     }
                     boardEl.appendChild(sq);
                 }
+            }
+
+            // Animate single steps only; jumps, loads and flips stay instant.
+            if (!reduceMotion) {
+                if (ply === prevPly + 1) animateMove(verbose[ply - 1], true);
+                else if (ply === prevPly - 1) animateMove(verbose[ply], false);
             }
 
             // Status text
@@ -602,6 +622,63 @@
                 } else if (nodeRect.bottom > boxRect.bottom) {
                     movesBox.scrollTop += nodeRect.bottom - boxRect.bottom;
                 }
+            }
+        }
+
+        // ---- Move animation ------------------------------------------------
+        const sqEl = (square) => boardEl.querySelector(`[data-square="${square}"]`);
+
+        // FLIP: the piece is already drawn on `toSq`; start it over `fromSq`
+        // and let it glide home. Rects make this work on a flipped board too.
+        function slide(fromSq, toSq, { pop = false } = {}) {
+            const a = sqEl(fromSq), b = sqEl(toSq);
+            const piece = b && b.querySelector('.cr-piece');
+            if (!a || !piece) return;
+            const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+            const start = `translate(${ra.left - rb.left}px, ${ra.top - rb.top}px)`;
+            const frames = pop
+                ? [{ transform: start }, { transform: 'none', offset: 0.6 }, { transform: 'scale(1.18)', offset: 0.8 }, { transform: 'none' }]
+                : [{ transform: start }, { transform: 'none' }];
+            b.classList.add('moving');
+            const anim = piece.animate(frames, { duration: pop ? 300 : 180, easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)' });
+            anim.onfinish = anim.oncancel = () => b.classList.remove('moving');
+        }
+
+        // A quick flash on the square where a capture lands.
+        function burst(square) {
+            const s = sqEl(square);
+            if (!s) return;
+            const b = document.createElement('span');
+            b.className = 'cr-burst';
+            s.appendChild(b);
+            const anim = b.animate(
+                [{ opacity: 0, transform: 'scale(0.4)' }, { opacity: 1, transform: 'scale(1)', offset: 0.3 }, { opacity: 0, transform: 'scale(1.4)' }],
+                { duration: 320, delay: 140, easing: 'ease-out', fill: 'backwards' }
+            );
+            anim.onfinish = anim.oncancel = () => b.remove();
+        }
+
+        function fadeIn(square) {
+            const piece = sqEl(square)?.querySelector('.cr-piece');
+            if (piece) piece.animate([{ opacity: 0, transform: 'scale(0.6)' }, { opacity: 1, transform: 'none' }], { duration: 220, easing: 'ease-out' });
+        }
+
+        function animateMove(m, forward) {
+            if (!m) return;
+            const rank = m.color === 'w' ? '1' : '8';
+            const rook = m.flags.includes('k') ? ['h' + rank, 'f' + rank]
+                       : m.flags.includes('q') ? ['a' + rank, 'd' + rank] : null;
+            // En passant removes the pawn beside the destination, not on it.
+            const capturedSq = m.flags.includes('e') ? m.to[0] + m.from[1] : m.to;
+
+            if (forward) {
+                slide(m.from, m.to, { pop: Boolean(m.captured || m.promotion) });
+                if (rook) slide(rook[0], rook[1]);
+                if (m.captured) burst(capturedSq);
+            } else {
+                slide(m.to, m.from);
+                if (rook) slide(rook[1], rook[0]);
+                if (m.captured) fadeIn(capturedSq);
             }
         }
 
