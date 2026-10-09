@@ -210,6 +210,7 @@
         }
         .cr-piece svg { display: block; width: 100%; height: 100%; }
         .cr-sq.moving { z-index: 3; }
+        .cr-piece.cr-ghost { position: absolute; inset: 5%; width: auto; height: auto; z-index: 0; pointer-events: none; }
         .cr-burst {
             position: absolute;
             inset: 0;
@@ -637,11 +638,12 @@
             const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
             const start = `translate(${ra.left - rb.left}px, ${ra.top - rb.top}px)`;
             const frames = pop
-                ? [{ transform: start }, { transform: 'none', offset: 0.6 }, { transform: 'scale(1.18)', offset: 0.8 }, { transform: 'none' }]
+                ? [{ transform: start }, { transform: 'none', offset: 0.55 }, { transform: 'scale(1.18)', offset: 0.75 }, { transform: 'none' }]
                 : [{ transform: start }, { transform: 'none' }];
             b.classList.add('moving');
-            const anim = piece.animate(frames, { duration: pop ? 300 : 180, easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)' });
-            anim.onfinish = anim.oncancel = () => b.classList.remove('moving');
+            const anim = piece.animate(frames, { duration: pop ? 420 : 180, easing: 'cubic-bezier(0.2, 0.8, 0.3, 1)' });
+            const done = () => b.classList.remove('moving');
+            anim.finished.then(done, done); // rejects on cancel, so this also cleans up
         }
 
         // A quick flash on the square where a capture lands.
@@ -653,9 +655,31 @@
             s.appendChild(b);
             const anim = b.animate(
                 [{ opacity: 0, transform: 'scale(0.4)' }, { opacity: 1, transform: 'scale(1)', offset: 0.3 }, { opacity: 0, transform: 'scale(1.4)' }],
-                { duration: 320, delay: 140, easing: 'ease-out', fill: 'backwards' }
+                { duration: 320, delay: 220, easing: 'ease-out', fill: 'backwards' }
             );
-            anim.onfinish = anim.oncancel = () => b.remove();
+            const done = () => b.remove();
+            anim.finished.then(done, done); // rejects on cancel, so this also cleans up
+        }
+
+        // The board is already drawn without the captured piece, so put a ghost
+        // of it back on its square and knock it off when the attacker lands.
+        function knockOut(fromSq, square, color, type) {
+            const a = sqEl(fromSq), s = sqEl(square);
+            if (!a || !s) return;
+            const ghost = document.createElement('span');
+            ghost.className = 'cr-piece cr-ghost ' + color;
+            ghost.innerHTML = PIECES[color][type];
+            s.appendChild(ghost);
+            // Fly off in the direction the attacker was travelling.
+            const dir = a.getBoundingClientRect().left > s.getBoundingClientRect().left ? -1 : 1;
+            const anim = ghost.animate([
+                { transform: 'none', opacity: 1 },
+                { transform: 'none', opacity: 1, offset: 0.52 },
+                { transform: `translate(${dir * -6}%, 0) scale(1.08)`, opacity: 1, offset: 0.6 },
+                { transform: `translate(${dir * 45}%, -65%) rotate(${dir * 28}deg) scale(0.4)`, opacity: 0 },
+            ], { duration: 440, easing: 'ease-in', fill: 'forwards' });
+            const done = () => ghost.remove();
+            anim.finished.then(done, done); // rejects on cancel, so this also cleans up
         }
 
         function fadeIn(square) {
@@ -674,7 +698,10 @@
             if (forward) {
                 slide(m.from, m.to, { pop: Boolean(m.captured || m.promotion) });
                 if (rook) slide(rook[0], rook[1]);
-                if (m.captured) burst(capturedSq);
+                if (m.captured) {
+                    knockOut(m.from, capturedSq, m.color === 'w' ? 'b' : 'w', m.captured);
+                    burst(capturedSq);
+                }
             } else {
                 slide(m.to, m.from);
                 if (rook) slide(rook[1], rook[0]);
